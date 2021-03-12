@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+
+<h1 class="h3 mb-3 font-weight-normal">Register an account</h1>
+
+
+<form method="POST" action="{% url 'perfil' %}">
+
+    {% include 'parciais/_messages.html' %}
+
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label>Nome</label>
+        <input type="text" name="first_name" value="{{request.POST.first_name}}" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Sobrenome</label>
+        <input type="text" name="last_name" value="{{request.POST.last_name}}" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" value="{{request.POST.email}}" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Usuário</label>
+        <input type="text" name="username" value="{{request.POST.username}}" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Senha</label>
+        <input type="password" name="password" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Confirmar Senha</label>
+        <input type="password" name="password1" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+</form>
+
+{% endblock %}
