@@ -53,4 +53,4 @@ def perfil(request):
     new_user = Usuario.objects.create_superuser(username=username, first_name=first_name, last_name=last_name,
                          email=email, password=password)
     new_user.save()
-    return render(request, 'perfil.html')
+    return render(request, 'login.html')

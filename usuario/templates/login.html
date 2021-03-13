@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RNcaronas</title>
+<title>WorkBook</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -112,11 +112,11 @@
             <button type="submit" class="btn btn-primary btn-lg btn-block">Entrar</button>
         </div>
 		<div class="clearfix">
-            <label class="pull-left checkbox-inline"><input type="checkbox"> Lembrar minha senha</label>
-            <a href="#" class="pull-right">Esqueceu sua senha?</a>
+            <label class="pull-left checkbox-inline"><a href="#" class="pull-right">Esqueceu sua senha?</a><label>
+
         </div>
         <div class="clearfix"  >
-            <a  href="/usurious/register" class="pull-right">Cadastre-se</a>
+            <a  href="{% url 'perfil' %}" class="pull-right">Cadastre-se</a>
         </div>
     </form>
     <p class="text-center small">Não tem conta?  <a href="#">Assine aqui!</a></p>
