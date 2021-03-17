@@ -1,80 +1,114 @@
+
 <!DOCTYPE html>
 {% load static %}
-
 <html lang="en">
-
-<head>
+  <head>
+    <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <!-- Twitter meta-->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="@pratikborsadiya">
+    <meta property="twitter:creator" content="@pratikborsadiya">
+    <!-- Open Graph Meta-->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Vali Admin">
+    <meta property="og:title" content="Vali - Free Bootstrap 4 admin theme">
+    <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
+    <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
+    <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <title>WorkBook</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>WorkBook</title>
-    <!-- Bootstrap core CSS-->
-    <link href="{% static '/public/bootstrap/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
-    <!-- Custom fonts for this template-->
-    <link href="{% static '/public/bootstrap/vendor/font-awesome/css/font-awesome.min.css'%}" rel="stylesheet"
-          type="text/css">
-    <!-- Custom styles for this template-->
-    <link href="{% static '/public/bootstrap/css/sb-admin.css%'}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <!-- Navbar-->
+    <header class="app-header__logo"><a class="app-header">&nbsp;&nbsp;&nbsp;&nbsp;WorkBook</a>
 
+    </header>
+    <!-- Sidebar menu-->
 
-</head>
+    <main class="app-content">
 
+      <div class="app-title">
+        <div>
+          <h1><i class="fa fa-edit"></i>Cadastro do Cliente</h1>
+          <p>Insira seus dados</p>
+        </div>
+      </div>
+      <div class="row" >
+        <div class="col-md-12" >
+          <div class="tile">
+            <div class="row">
+              <div class="col-lg-6">
+                <form >
+                  <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input class="form-control" id="nome" type="email" placeholder="Nome">
+                  </div>
+                    <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input class="form-control" id="email" type="email" aria-describedby="emailHelp" placeholder="Email">
+                  </div>
+                  <div class="form-group">
+                    <label for="Password">Senha:</label>
+                    <input class="form-control" id="Password" type="password" placeholder="Password">
+                  </div>
+                    <div class="form-group">
+                    <label for="cidade">Cidade:</label>
+                    <input class="form-control" id="cidade" type="text" aria-describedby="cidade" placeholder="Cidade">
+                  </div>
+                    <div class="form-group">
+                    <label for="telefone">Telefone:</label>
+                    <input class="form-control" id="telefone" type="tel" aria-describedby="telefone" placeholder="Telefone">
+                  </div>
+                  <fieldset class="form-group">
+                    <legend>Tipo</legend>
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" id="optionsRadios1" type="radio" name="optionsRadios" value="option1" checked="">Cliente
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" id="optionsRadios2" type="radio" name="optionsRadios" value="option2">Profissional
+                      </label>
+                    </div>
 
-<div class="container">
-    <div class="card card-register mx-auto mt-4">
-        <div class="card-header">Criar Conta</div>
-
-
-        <form method="POST" action="{% url 'perfil' %}">
-
-            {% include 'parciais/_messages.html' %}
-
-            {% csrf_token %}
-
-            <div class="form-group">
-                <label>Nome</label>
-                <input type="text" name="first_name" value="{{request.POST.first_name}}" class="form-control">
+                  </fieldset>
+                </form>
+              </div>
+              <div class="col-lg-4 offset-lg-1">
+              </div>
             </div>
-            <div class="form-group">
-                <label>Sobrenome</label>
-                <input type="text" name="last_name" value="{{request.POST.last_name}}" class="form-control">
+            <div class="tile-footer">
+              <button class="btn btn-primary" type="submit">Cadastrar</button>
             </div>
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" name="email" value="{{request.POST.email}}" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label>Usuário</label>
-                <input type="text" name="username" value="{{request.POST.username}}" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label>Senha</label>
-                <input type="password" name="password" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label>Confirmar Senha</label>
-                <input type="password" name="password1" class="form-control">
-            </div>
-
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
-
-        </form>
-    </div>
-</div>
-
-
-<!-- Bootstrap core JavaScript-->
-<script src="{% static '/public/bootstrap/vendor/jquery/jquery.min.js'%}"></script>
-<script src="{% static '/public/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
-<!-- Core plugin JavaScript-->
-<script src="{% static '/public/bootstrap/vendor/jquery-easing/jquery.easing.min.js'%}"></script>
-
-<script src="{% static '/public/bootstrap/js/validator.min.js'}"></script>
-
-
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Essential javascripts for application to work-->
+    <script src="{% static 'js/jquery-3.3.1.min.js'%}"></script>
+    <script src="{% static 'js/popper.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'js/main.js'%}"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="{% static 'js/plugins/pace.min.js'%}"></script>
+    <!-- Page specific javascripts-->
+    <!-- Google analytics script-->
+    <script type="text/javascript">
+      if(document.location.hostname == 'pratikborsadiya.in') {
+      	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      	ga('create', 'UA-72504830-1', 'auto');
+      	ga('send', 'pageview');
+      }
+    </script>
+  </body>
 </html>
