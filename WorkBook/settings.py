@@ -45,10 +45,12 @@ INSTALLED_APPS = [
 
     'avaliacao',
     'categoria',
-    'perfil',
+    'perfil.apps.PerfilConfig',
     'mensagem',
     'accounts',
 ]
+
+APPEND_SLASH = False
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

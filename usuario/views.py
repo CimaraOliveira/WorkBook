@@ -34,23 +34,25 @@ def submit_login(request):
             return redirect('/login/#')
         else:
             messages.error(request, 'Usuário e senha inválido. Favor tentar novamente')
-        return redirect('/login/')
+        return redirect('/index/')
 
 
 def perfil(request):
     if request.method != 'POST':
         return render(request, 'perfil.html')
-
     username = request.POST['username']
-    first_name = request.POST['first_name']
-    last_name = request.POST['last_name']
+    #first_name = request.POST['first_name']
+    #last_name = request.POST['last_name']
     email = request.POST['email']
-    password = request.POST['password']
-    password1 = request.POST['password1']
-
+    senha = request.POST['senha']
+    cidade = request.POST['cidade']
+    telefone = request.POST['telefone']
+    #password1 = request.POST['password1']
+    print(username)
     messages.success(request, 'Usuário Registrado com Sucesso!')
 
-    new_user = Usuario.objects.create_superuser(username=username, first_name=first_name, last_name=last_name,
-                         email=email, password=password)
+    new_user = Usuario.objects.create_superuser(username=username,
+                         email=email, password=senha, cidade=cidade, telefone=telefone)
     new_user.save()
-    return render(request, 'login.html')
+
+    return redirect('/login/#')
