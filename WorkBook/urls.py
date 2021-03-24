@@ -21,11 +21,7 @@ from usuario import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', views.login_user),
-    path('login/submit', views.submit_login),
-    path('logout/', views.logout_user),
     path('usuario/', include('usuario.urls')),
-    path('index/', views.index_usurious)
 
 
 ]

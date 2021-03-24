@@ -2,39 +2,30 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Usuario
+from django.contrib import auth
 
 
-# Create your views here.
-from django.views.decorators.csrf import csrf_protect
-app_name = 'usuario'
 
-
-def index_usurious(request):
+def index(request):
     return render(request, 'index.html')
 
 def logout_user(request):
     logout(request)
-    return redirect('/login/')
+    return redirect('submit_login')
 
-def login_user(request):
-    return render(request, 'login.html')
-
-@csrf_protect
 def submit_login(request):
-    if request.POST:
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+    if request.method != 'POST':
+        return render(request, 'submit_login.html')
 
-        user = authenticate(username=username, password=password)
+    username = request.POST.get('username')
+    password = request.POST.get('password')
 
+    user = auth.authenticate(username=username, password=password)
+    if user is not None:
+        login(request, user)
+        return redirect('usuario:index')
+    return redirect('usuario:submit_login')
 
-
-        if user is not None:
-            login(request, user)
-            return redirect('/index/')
-        else:
-            messages.error(request, 'Usuário e senha inválido. Favor tentar novamente')
-        return redirect('/index/')
 
 
 def perfil(request):
@@ -48,11 +39,13 @@ def perfil(request):
     cidade = request.POST['cidade']
     telefone = request.POST['telefone']
     #password1 = request.POST['password1']
-    print(username)
+
     messages.success(request, 'Usuário Registrado com Sucesso!')
 
     new_user = Usuario.objects.create_superuser(username=username,
                          email=email, password=senha, cidade=cidade, telefone=telefone)
     new_user.save()
 
-    return redirect('/login/#')
+    return redirect('usuario:submit_login')
+
+

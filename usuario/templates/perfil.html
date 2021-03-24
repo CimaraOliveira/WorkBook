@@ -48,7 +48,7 @@
             <div class="tile">
                 <div class="row">
                     <div class="col-lg-6">
-                        <form action="/usuario/perfil/" method="post">
+                        <form action="{% url 'usuario:perfil' %}" method="post">
                             {%csrf_token %}
                             <div class="form-group">
                                 <label for="nome">Nome:</label>
