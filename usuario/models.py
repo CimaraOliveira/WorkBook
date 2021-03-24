@@ -23,7 +23,7 @@ class Usuario(AbstractUser):
         return "{} {}".format(self.first_name, self.last_name)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.nome or self.senha)
 
     class Meta:
         db_table = 'usuario'

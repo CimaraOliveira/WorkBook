@@ -31,7 +31,7 @@ def submit_login(request):
 
         if user is not None:
             login(request, user)
-            return redirect('/login/#')
+            return redirect('/index/')
         else:
             messages.error(request, 'Usuário e senha inválido. Favor tentar novamente')
         return redirect('/index/')
