@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Usuario
 from django.contrib import auth
+from django.core.mail import send_mail
+
 
 
 
@@ -44,6 +46,16 @@ def perfil(request):
 
     new_user = Usuario.objects.create_superuser(username=username,
                          email=email, password=senha, cidade=cidade, telefone=telefone)
+
+
+    send_mail(
+            'Sua Conta foi Criada!',
+            '%s, Cadastro Realizado com Sucesso!' % username,
+            'sistema.workbook.21@gmail.com',
+            [email],
+            fail_silently=False,
+    )
+
     new_user.save()
 
     return redirect('usuario:submit_login')

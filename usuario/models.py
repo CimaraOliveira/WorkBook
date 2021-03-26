@@ -1,5 +1,5 @@
 from _ast import mod
-
+from django.core.mail import send_mail
 from django.db import models
 from django.db import models
 from django.contrib.auth.models import User
@@ -21,6 +21,7 @@ class Usuario(AbstractUser):
     @property
     def name(self):
         return "{} {}".format(self.first_name, self.last_name)
+
 
     def __str__(self):
         return str(self.nome or self.senha)
