@@ -6,7 +6,9 @@ from categoria.models import Categoria
 
 class Perfil(models.Model):
     nome = models.CharField('nome',max_length=250)
-    categoria = models.OneToOneField(Categoria, on_delete=models.CASCADE, null=True, blank=True)
+    categorias = models.ManyToManyField(Categoria)
+    decricao = models.CharField('descricao', max_length=2000)
+    slogan = models.ImageField(upload_to='profissional', blank=True, null=True)
 
     class Meta:
         db_table = 'perfil'

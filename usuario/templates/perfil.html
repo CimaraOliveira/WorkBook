@@ -46,87 +46,101 @@
         <div class="col-md-12">
             <div class="tile">
                 <div class="row">
-                    <div id="show_class" class="col-lg-12">
+                    <div class="col-lg-12">
                         <form action="/usuario/perfil/" method="post">
                             {%csrf_token %}
-                            <div class="form-group">
-                                <label for="nome">Nome:</label>
-                                <input class="form-control" name="username" id="nome" type="text" placeholder="Nome">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input class="form-control" name="email" id="email" type="email"
-                                       aria-describedby="emailHelp"
-                                       placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <label for="senha">Senha:</label>
-                                <input class="form-control" name="senha" id="senha" type="password" placeholder="senha">
-                            </div>
-                            <div class="form-group">
-                                <label for="cidade">Cidade:</label>
-                                <input class="form-control" name="cidade" id="cidade" type="text"
-                                       aria-describedby="cidade"
-                                       placeholder="Cidade">
-                            </div>
-                            <div class="form-group">
-                                <label for="telefone">Telefone:</label>
-                                <input class="form-control" name="telefone" id="telefone" type="tel"
-                                       aria-describedby="telefone"
-                                       placeholder="Telefone">
-                            </div>
-                            <fieldset class="form-group">
-                                 <label for="tipo">Tipo de Usuario:</label>
-                                <!--<legend>Tipo de Usuario:</legend>-->
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" id="optionsRadios1" type="radio"
-                                               name="optionsRadios" value="option1" checked="">Cliente
-                                    </label>
+                            <div class="row">
+                                <div id="show_class" class="col-lg-12">
+                                    <div class="form-group">
+                                        <label for="nome">Nome:</label>
+                                        <input class="form-control" name="username" id="nome" type="text"
+                                               placeholder="Nome">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email:</label>
+                                        <input class="form-control" name="email" id="email" type="email"
+                                               aria-describedby="emailHelp"
+                                               placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="senha">Senha:</label>
+                                        <input class="form-control" name="senha" id="senha" type="password"
+                                               placeholder="senha">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cidade">Cidade:</label>
+                                        <input class="form-control" name="cidade" id="cidade" type="text"
+                                               aria-describedby="cidade"
+                                               placeholder="Cidade">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="telefone">Telefone:</label>
+                                        <input class="form-control" name="telefone" id="telefone" type="tel"
+                                               aria-describedby="telefone"
+                                               placeholder="Telefone">
+                                    </div>
+                                    <fieldset class="form-group">
+                                        <label for="tipo">Tipo de Usuario:</label>
+                                        <!--<legend>Tipo de Usuario:</legend>-->
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" id="optionsRadios1" type="radio"
+                                                       name="user" value="cliente" checked="">Cliente
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" id="optionsRadios2" type="radio"
+                                                       name="user" value="profissional">Profissional
+                                            </label>
+                                        </div>
+                                    </fieldset>
+
+
+                                    <div class="tile-footer">
+                                        <button class="btn btn-primary" type="submit">Cadastrar</button>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" id="optionsRadios2" type="radio"
-                                               name="optionsRadios" value="option2">Profissional
-                                    </label>
-                                </div>
-                            </fieldset>
-                            <div class="tile-footer">
-                                <button class="btn btn-primary" type="submit">Cadastrar</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div id="show_profissional" class="col-lg-4 offset-lg-1">
-                        <form>
-                            <div class="form-group">
+                                <div id="show_profissional" class="col-lg-4 offset-lg-1">
+                                        <div class="form-group">
 
-                                    <label class="control-label" for="profição">Profissão:</label>
-                                     <input class="form-control" name="profição" id="profição" type="text" placeholder="Profissão">
+                                            <label class="control-label" for="profissao">Profissão:</label>
+                                            <input class="form-control" name="profissao" id="profissao" type="text"
+                                                   placeholder="Profissão">
 
-                            </div>
-                            <div class="form-group">
+                                        </div>
+                                        <!--Checkbox Markup-->
+                                        <div class="form-group">
+                                            <label class="control-label">Categoria:</label>
+                                            <div class="animated-checkbox" id="tipo">
+                                                {% for categoria in categorias %}
+                                                <label>
+                                                    <input name="categoria{{categoria.id}}" value="{{categoria.id}}"
+                                                           type="checkbox"><span
+                                                        class="label-text"> {{categoria.nome}}</span>
+                                                </label>
+                                                {% endfor %}
+                                            </div>
 
-                                    <label class="control-label" for="tipo">Tipo:</label>
-                                    <input class="form-control" name="tipo" id="tipo" type="text" placeholder="tipo">
-
-                            </div>
-                            <div class="form-group">
-                                <label for="descricao">Descrição</label>
-                                <textarea class="form-control" id="descricao" rows="3"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="foto">Imagem:</label>
-                                <input class="form-control-file" id="foto" type="file"
-                                       aria-describedby="fileHelp">
-                            </div>
-                            <div>
-
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="descricao">Descrição</label>
+                                            <textarea class="form-control" name="descricao" id="descricao"
+                                                      rows="3"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="slogan">Imagem:</label>
+                                            <input class="form-control-file" id="slogan" type="file"
+                                                   aria-describedby="fileHelp">
+                                        </div>
+                                    </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </main>
 <!-- Essential javascripts for application to work-->
@@ -148,6 +162,13 @@
       	ga('create', 'UA-72504830-1', 'auto');
       	ga('send', 'pageview');
       }
+
+
+
+
+
+
+
 
 
 

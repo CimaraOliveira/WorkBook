@@ -18,6 +18,13 @@ class Usuario(AbstractUser):
     is_superuser = models.BooleanField(default=1)
     is_active = models.BooleanField(default=True)
 
+    LOAN_STATUS = (
+        ('profissional', 'Profissional'),
+        ('cliente', 'Cliente'),
+
+    )
+    status = models.CharField(max_length=10, choices=LOAN_STATUS, blank=True)
+
     @property
     def name(self):
         return "{} {}".format(self.first_name, self.last_name)

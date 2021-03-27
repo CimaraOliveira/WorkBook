@@ -1,13 +1,23 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+
+from categoria.models import Categoria
+from perfil.models import Perfil
 from .models import Usuario
 from django.contrib import auth
 from django.core.mail import send_mail
 
-
-
-
+# buscar categorias pelos ids informados no html
+def get_categorias(request):
+    categorias = []
+    for key, value in request.POST.items():
+        if key.find('categoria') >= 0:
+            print(key, value)
+            categoria = Categoria.objects.get(id=value)
+            if categoria:
+                categorias.append(categoria)
+    return categorias
 def index(request):
     return render(request, 'index.html')
 
@@ -28,36 +38,62 @@ def submit_login(request):
         return redirect('usuario:index')
     return redirect('usuario:submit_login')
 
-
-
-def perfil(request):
-    if request.method != 'POST':
-        return render(request, 'perfil.html')
+#para evitar repeticao
+def register(request):
     username = request.POST['username']
-    #first_name = request.POST['first_name']
-    #last_name = request.POST['last_name']
+    # first_name = request.POST['first_name']
+    # last_name = request.POST['last_name']
     email = request.POST['email']
     senha = request.POST['senha']
     cidade = request.POST['cidade']
     telefone = request.POST['telefone']
-    #password1 = request.POST['password1']
 
-    messages.success(request, 'Usuário Registrado com Sucesso!')
+    return {"username": username, "email": email, "senha": senha, "cidade": cidade, "telefone":telefone, "perfil": prof(request)}
+# Aqui controla a parte do profissional
+def prof(request):
+    if request.POST['user'] == 'profissional':
+       name_prof = request.POST['profissao']
+       descricao = request.POST['descricao']
+       slogan = request.FILES.get('slogan')
+       perfil = Perfil.objects.create(nome=name_prof, decricao=descricao, slogan=slogan)
+       perfil.categorias.set(get_categorias(request))
+       return perfil
+    return None
 
-    new_user = Usuario.objects.create_superuser(username=username,
-                         email=email, password=senha, cidade=cidade, telefone=telefone)
 
+def perfil(request):
+    if request.method != 'POST':
+        categorias = Categoria.objects.all()
 
-    send_mail(
+        return render(request, 'perfil.html', {"categorias": categorias})
+    user_request = register(request)
+    username = user_request.get('username')
+    #first_name = request.POST['first_name']
+    #last_name = request.POST['last_name']
+    email = user_request.get('email')
+    senha = user_request.get('senha')
+    cidade = user_request.get('cidade')
+    telefone = user_request.get('telefone')
+    perfil = user_request.get('perfil')
+
+    user_db = Usuario.objects.filter(email=email)
+    if not user_db:
+        messages.success(request, 'Usuário Registrado com Sucesso!')
+
+        new_user = Usuario.objects.create_superuser(username=username,
+                                                    email=email, password=senha, cidade=cidade, telefone=telefone,
+                                                    perfil=perfil)
+
+        send_mail(
             'Sua Conta foi Criada!',
             '%s, Cadastro Realizado com Sucesso!' % username,
             'sistema.workbook.21@gmail.com',
             [email],
             fail_silently=False,
-    )
+        )
 
-    new_user.save()
-
+        new_user.save()
+    messages.error(request, 'Usuário já Registrado. Tente outro e-mail!')
     return redirect('usuario:submit_login')
 
 

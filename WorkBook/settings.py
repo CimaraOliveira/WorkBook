@@ -29,9 +29,11 @@ SECRET_KEY = '^j#ivatxs-jy$2ilenruzir#4wvzans%v2jt4pz(ln9+ru$3(7'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
+#AUTH_USER_MODEL = 'auth.models.User'
 # Application definition
+
+
+ROLEPERMISSIONS_MODULE = 'WorkBook.roles'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -48,6 +50,7 @@ INSTALLED_APPS = [
     'perfil.apps.PerfilConfig',
     'mensagem',
     'accounts',
+    'rolepermissions',
 ]
 
 APPEND_SLASH = False
@@ -140,7 +143,7 @@ STATICFILES_DIRS = (
 
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT =( os.path.join(BASE_DIR, 'media'))
+MEDIA_ROOT =(os.path.join(BASE_DIR, 'media'))
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
