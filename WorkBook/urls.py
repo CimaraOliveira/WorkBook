@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
 from django.urls import path, include
+from django.views.generic import RedirectView
 
 from WorkBook import settings
 from usuario import views
@@ -27,7 +28,7 @@ urlpatterns = [
     path('usuario/', include('usuario.urls')),
     path('login/', views.submit_login),
 
-
+    path('', RedirectView.as_view(url='usuario/home'))
 ]
 
 urlpatterns += staticfiles_urlpatterns()

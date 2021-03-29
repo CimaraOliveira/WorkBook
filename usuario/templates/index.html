@@ -2,45 +2,71 @@
 {% block content %}
 <main class="app-content">
     <!-- main do projetooo-->
-    <div class="row">
-            <div class="col-md-6 col-lg-3">
-                <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
-                    <div class="info">
-                        <h4>Users</h4>
-                        <p><b>5</b></p>
+    <form method="GET">
+        {%csrf_token %}
+
+        <div class="row" style="display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            align-items: center;
+                           ">
+
+            <h1>Precisa contratar um serviço de forma rápida?
+
+            </h1>
+            <h1>
+                Aqui você encontrar com rapidez e eficiência!
+            </h1>
+
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label></label>
+                    <div class="input-group">
+                        <input type="text" id="profissao" class="form-control" name="profissao"
+                               placeholder="Digite o que você precisa...">
+                        <span class="input-group-btn" id="clear-input-profissao">
+                        </span>
+
                     </div>
+                    <div id="profissional_list"></div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="widget-small info coloured-icon"><i class="icon fa fa-thumbs-o-up fa-3x"></i>
-                    <div class="info">
-                        <h4>Likes</h4>
-                        <p><b>25</b></p>
+            <div class="col-md-3 ">
+                <div class="form-group">
+
+                    <label></label>
+                    <div class="input-group">
+                        <input type="text" id="destino" class="form-control" name="destino"
+                               placeholder="Cidade" required>
+                        <span class="input-group-btn" id="clear-input-destino">
+                                                <button type="button" onclick="clearInputDestino()"
+                                                        class="btn btn-primary btn-md"><font
+                                                        style="vertical-align: inherit;"><font
+                                                        style="vertical-align: inherit;"><em
+                                                        class="fa fa-trash"></em></font></font></button>
+                                            </span>
                     </div>
+                    <div id="destino_list"></div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
-                    <div class="info">
-                        <h4>Uploades</h4>
-                        <p><b>10</b></p>
+
+            <div class="col-md-2 col-xs-1">
+                <div class="form-group">
+
+                    <label></label>
+                    <div style="padding: 3px; height: auto;">
+                        <button type="submit" value="Buscar" class="btn btn-primary">
+                            <em
+                                    class="fa fa-search"
+                                    aria-hidden="true"></em> Buscar
+                        </button>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="widget-small danger coloured-icon"><i class="icon fa fa-star fa-3x"></i>
-                    <div class="info">
-                        <h4>Stars</h4>
-                        <p><b>500</b></p>
-                    </div>
+
                 </div>
             </div>
         </div>
-    <div style="display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;">
 
-    </div>
+    </form>
 </main>
 {% endblock %}

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
+import usuario
 from categoria.models import Categoria
 from perfil.models import Perfil
 from .models import Usuario
@@ -20,6 +21,21 @@ def get_categorias(request):
     return categorias
 def index(request):
     return render(request, 'index.html')
+
+def home(request):
+    return render(request, 'home.html')
+
+#buscando profissões pelo nome na tela home
+def home_perfil(request):
+    # query nativa
+    query = "select * from perfil p inner join usuario u on(p.id = u.id)where p.nome = %s"
+    List = None
+
+    nome = request.GET.get('profissao')
+    if nome:
+            List = Perfil.objects.raw(query, [nome])
+
+    return render(request, 'home.html', {'List': List})
 
 def logout_user(request):
     logout(request)

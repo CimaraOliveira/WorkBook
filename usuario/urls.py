@@ -10,6 +10,8 @@ urlpatterns = [
    path('index/', views.index, name='index'),
    path('index/', views.index, name='index'),
    path('logout/', views.logout_user),
+   path('home', views.home_perfil, name="home"),
+   #path('home/submit', views.set_index_usurious),
 
 
 ]

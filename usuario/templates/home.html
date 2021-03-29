@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta name="description"
+          content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <!-- Twitter meta-->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="@pratikborsadiya">
+    <meta property="twitter:creator" content="@pratikborsadiya">
+    <!-- Open Graph Meta-->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Vali Admin">
+    <meta property="og:title" content="Vali - Free Bootstrap 4 admin theme">
+    <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
+    <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
+    <meta property="og:description"
+          content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <title>WorkBook</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css"
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<!-- Navbar-->
+<header class="app-header"><a class="app-header__logo" href="">WorkBook</a>
+
+    <!-- Navbar Right Menu-->
+    <ul class="app-nav">
+        <!--Notification Menu-->
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown"><i
+                class="fa fa-info-circle"></i>&nbsp;SOBRE</a>
+        </li>
+        <li class="dropdown"><a class="app-nav__item" href="{% url 'usuario:perfil' %}" data-toggle="dropdown"><i
+                class="fa fa-pencil-square-o"></i>&nbsp;CADASTRE-SE</a>
+        </li>
+        <li class="dropdown"><a class="app-nav__item" href="{% url 'usuario:submit_login' %}" data-toggle="dropdown"><i
+                class="fa fa-sign-in"></i>&nbsp;ENTRAR</a>
+        </li>
+
+
+    </ul>
+</header>
+
+<main class="app-content-home">
+    <!--<div class="row user">
+        <div class="col-md-12">
+            <div class="profile">
+                <div class="cover-image"></div>
+            </div>
+        </div>
+    </div>-->
+
+    <form method="GET">
+        {%csrf_token %}
+
+        <div class="row" style="display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            align-items: center;
+                           ">
+
+            <h1>Precisa contratar um serviço de forma rápida?
+
+            </h1>
+            <h1>
+                Aqui você encontrar com rapidez e eficiência!
+            </h1>
+            <div class="col-md-6" >
+                <div class="form-group">
+                    <label>
+
+                    </label>
+                    <div class="input-group">
+                        <input type="text" id="profissao" class="form-control" name="profissao"
+                               placeholder="Digite o que você precisa...">
+                        <span class="input-group-btn" id="clear-input-profissao">
+                            </span>
+
+                    </div>
+                    <div id="profissional_list"></div>
+                </div>
+            </div>
+
+            <div class="col-md-2 col-xs-1">
+                <div class="form-group">
+
+                    <label></label>
+                    <div style="padding: 3px; height: auto;">
+                        <button type="submit" value="Buscar" class="btn btn-primary">
+                            <em
+                                    class="fa fa-search"
+                                    aria-hidden="true"></em> Buscar
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="clearfix"></div>
+    {% if List is not None %}
+    <div class="col-md-12">
+        <div class="tile">
+
+            <div class="table-responsive">
+
+                <table class="table">
+                    <thead>
+                    <tr>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for usuario in List %}
+                    <tr>
+                        <td><img src="{{ usuario.foto.url }}" style="width: 95px"></td>
+                        <td>{{usuario.nome}}</td>
+                        <td>{{usuario.cidade}}</td>
+                        <td>
+                            <div class="col-md-4 col-xs-3">
+                                <button class="btn btn-primary" type="submit">+</button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                    {% endfor %}
+                </table>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    {% endif %}
+
+</main>
+<script src="{% static 'js/jquery-3.3.1.min.js'%}"></script>
+<script src="{% static 'js/show_view.js'%}"></script>
