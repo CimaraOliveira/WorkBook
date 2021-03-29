@@ -23,7 +23,7 @@ class Usuario(AbstractUser):
         ('cliente', 'Cliente'),
 
     )
-    status = models.CharField(max_length=10, choices=LOAN_STATUS, blank=True)
+    status = models.CharField(max_length=15, choices=LOAN_STATUS, blank=True)
 
     @property
     def name(self):

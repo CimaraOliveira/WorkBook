@@ -47,7 +47,7 @@
             <div class="tile">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form action="/usuario/perfil/" method="post">
+                        <form action="/usuario/perfil/" method="post" enctype="multipart/form-data">
                             {%csrf_token %}
                             <div class="row">
                                 <div id="show_class" class="col-lg-12">
@@ -141,7 +141,7 @@
             </div>
         </div>
     </div>
-    </div>
+
 </main>
 <!-- Essential javascripts for application to work-->
 <script src="{% static 'js/jquery-3.3.1.min.js'%}"></script>
