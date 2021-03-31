@@ -39,8 +39,7 @@
                   <input type="checkbox"><span class="label-text">Fique conectado</span>
                 </label>
               </div>
-              <p class="semibold-text mb-2"><a href="#" data-toggle="flip">Esqueceu a senha ?</a></p>
-
+              <p class="semibold-text mb-2"><a href="{% url 'reset_password' %}">Esqueceu a senha ?</a></p>
             </div>
 
           </div>
@@ -51,19 +50,7 @@
                 <p class="semibold-text mb-2"><a href="{% url 'usuario:perfil' %}" >Cadastre-se</a></p>
             </div>
         </form>
-        <form class="forget-form" action="index.html">
-          <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Esqueceu a senha ?</h3>
-          <div class="form-group">
-            <label class="control-label">EMAIL</label>
-            <input class="form-control" type="text" placeholder="Email">
-          </div>
-          <div class="form-group btn-container">
-            <button class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>REDEFINIR</button>
-          </div>
-          <div class="form-group mt-3">
-            <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Volte ao login</a></p>
-          </div>
-        </form>
+
       </div>
     </section>
     <!-- Essential javascripts for application to work-->

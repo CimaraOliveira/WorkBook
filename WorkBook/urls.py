@@ -27,8 +27,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('usuario/', include('usuario.urls')),
     path('login/', views.submit_login),
-
-    path('', RedirectView.as_view(url='usuario/home'))
+    path('mensagem/', include('mensagem.urls')),
+    path('', RedirectView.as_view(url='usuario/home')),
+    path('accounts/', include('accounts.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

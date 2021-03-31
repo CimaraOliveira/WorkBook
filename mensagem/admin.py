@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import Mensagem
 
-# Register your models here.
+class MensagemAdmin(admin.ModelAdmin):
+    list_display = ['texto', 'mensageiro', 'destinatario',]
+
+admin.site.register(Mensagem,MensagemAdmin)
+
