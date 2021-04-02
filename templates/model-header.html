@@ -116,17 +116,23 @@
 
         <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-home"></i><span
                 class="app-menu__label">Inicio</span></a></li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
-                class="app-menu__icon fa fa-bars "></i><span class="app-menu__label">Forms</span><i
-                class="treeview-indicator fa fa-angle-right"></i></a>
-            <ul class="treeview-menu">
-                <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i>Minhas Avaliações</a>
-                </li>
-            </ul>
+        <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-star"></i><span
+                class="app-menu__label">Avaliações</span></a></li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-bars"></i><span class="app-menu__label"> Meus Dados</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="{% url 'usuario:Profissional' %}"><i class="icon fa fa-user"></i> Perfil</a></li>
+            <li><a class="treeview-item" href="#"><i class="icon fa fa-edit"></i> Editar Perfil</a></li>
 
+          </ul>
         </li>
+        <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-users"></i><span
+                class="app-menu__label">Meus Clientes</span></a></li>
         <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-file-text"></i><span
                 class="app-menu__label">Relatório</span></a></li>
+        <li><a class="app-menu__item" href="{% url 'usuario:submit_login' %}"><i class="app-menu__icon fa fa-sign-out"></i><span
+                class="app-menu__label">Sair</span></a></li>
+
+
     </ul>
 </aside>
 </body>

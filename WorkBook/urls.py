@@ -28,9 +28,12 @@ urlpatterns = [
     path('usuario/', include('usuario.urls')),
     path('login/', views.submit_login),
     path('mensagem/', include('mensagem.urls')),
+    path('avaliacao/', include('avaliacao.urls')),
     path('', RedirectView.as_view(url='usuario/home')),
     path('accounts/', include('accounts.urls')),
 ]
+
+
 
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

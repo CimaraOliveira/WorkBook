@@ -9,6 +9,7 @@ from .models import Usuario
 from django.contrib import auth
 from django.core.mail import send_mail
 
+
 # buscar categorias pelos ids informados no html
 def get_categorias(request):
     categorias = []
@@ -19,13 +20,27 @@ def get_categorias(request):
             if categoria:
                 categorias.append(categoria)
     return categorias
+
+
 def index(request):
     return render(request, 'index.html')
+
+
+# mostrar perfil
+def indexProf(request, id):
+
+    try:
+        perf = Usuario.objects.get(perfil_id=id)
+        if perf:
+            return render(request, 'PerfilProfissional.html', {'ListPerfil': perf})
+    except:
+        return render(request,'PerfilProfissional.html')
 
 def home(request):
     return render(request, 'home.html')
 
-#buscando profissões pelo nome na tela home
+
+# buscando profissões pelo nome na tela home
 def home_perfil(request):
     # query nativa
     query = "select * from perfil p inner join usuario u on(p.id = u.id)where p.nome = %s"
@@ -33,13 +48,15 @@ def home_perfil(request):
 
     nome = request.GET.get('profissao')
     if nome:
-            List = Perfil.objects.raw(query, [nome])
+        List = Perfil.objects.raw(query, [nome])
 
     return render(request, 'home.html', {'List': List})
+
 
 def logout_user(request):
     logout(request)
     return redirect('submit_login')
+
 
 def submit_login(request):
     if request.method != 'POST':
@@ -54,26 +71,28 @@ def submit_login(request):
         return redirect('usuario:index')
     return redirect('usuario:submit_login')
 
-#para evitar repeticao
+
+# para evitar repeticao
 def register(request):
     username = request.POST['username']
-    # first_name = request.POST['first_name']
-    # last_name = request.POST['last_name']
     email = request.POST['email']
     senha = request.POST['senha']
     cidade = request.POST['cidade']
     telefone = request.POST['telefone']
 
-    return {"username": username, "email": email, "senha": senha, "cidade": cidade, "telefone":telefone, "perfil": prof(request)}
+    return {"username": username, "email": email, "senha": senha, "cidade": cidade, "telefone": telefone,
+            "perfil": prof(request)}
+
+
 # Aqui controla a parte do profissional
 def prof(request):
     if request.POST['user'] == 'profissional':
-       name_prof = request.POST['profissao']
-       descricao = request.POST['descricao']
-       slogan = request.FILES.get('slogan')
-       perfil = Perfil.objects.create(nome=name_prof, decricao=descricao, slogan=slogan)
-       perfil.categorias.set(get_categorias(request))
-       return perfil
+        name_prof = request.POST['profissao']
+        descricao = request.POST['descricao']
+        slogan = request.FILES.get('slogan')
+        perfil = Perfil.objects.create(nome=name_prof, decricao=descricao, slogan=slogan)
+        perfil.categorias.set(get_categorias(request))
+        return perfil
     return None
 
 
@@ -84,8 +103,6 @@ def perfil(request):
         return render(request, 'perfil.html', {"categorias": categorias})
     user_request = register(request)
     username = user_request.get('username')
-    #first_name = request.POST['first_name']
-    #last_name = request.POST['last_name']
     email = user_request.get('email')
     senha = user_request.get('senha')
     cidade = user_request.get('cidade')
@@ -111,5 +128,3 @@ def perfil(request):
         new_user.save()
     messages.error(request, 'Usuário já Registrado. Tente outro e-mail!')
     return redirect('usuario:submit_login')
-
-
