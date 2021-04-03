@@ -3,7 +3,7 @@ from rolepermissions.roles import AbstractUserRole
 
 
 
-class Usuario(AbstractUserRole):
+class Usuario_Role(AbstractUserRole):
     available_permissions = {
         'permissao_usuario': True,
     }

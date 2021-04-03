@@ -1,8 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from rolepermissions.checkers import has_role
+from rolepermissions.permissions import grant_permission
+from rolepermissions.roles import assign_role
 
 import usuario
+from WorkBook.roles import Profissional
+from WorkBook.roles import Usuario_Role
 from categoria.models import Categoria
 from perfil.models import Perfil
 from .models import Usuario
@@ -110,13 +115,15 @@ def perfil(request):
     perfil = user_request.get('perfil')
 
     user_db = Usuario.objects.filter(email=email)
+    #crie um novo profissional
     if not user_db:
         messages.success(request, 'Usuário Registrado com Sucesso!')
 
         new_user = Usuario.objects.create_superuser(username=username,
                                                     email=email, password=senha, cidade=cidade, telefone=telefone,
                                                     perfil=perfil)
-
+        if perfil:
+            assign_role(new_user, 'profissional')
         send_mail(
             'Sua Conta foi Criada!',
             '%s, Cadastro Realizado com Sucesso!' % username,

@@ -1,5 +1,5 @@
 
-#Tela de profissiolnal
+//Tela de profissiolnal
 
 $(document).ready(function(){
     // verificar se esse id existe no documento html
