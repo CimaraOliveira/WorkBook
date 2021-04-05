@@ -1,9 +1,10 @@
 from _ast import mod
 from django.core.mail import send_mail
 from django.db import models
-from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
+from django import forms
+
 
 from perfil.models import Perfil
 class Usuario(AbstractUser):
@@ -35,3 +36,10 @@ class Usuario(AbstractUser):
 
     class Meta:
         db_table = 'usuario'
+
+
+class FormDadosUsu(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        exclude = ('is_active','slug','is_staff','is_superuser','telefone','user_permissions','groups','last_login','password','status', 'date_joined',)
+

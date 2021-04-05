@@ -13,6 +13,8 @@ urlpatterns = [
    path('home', views.home_perfil, name="home"),
    path('perfilProfissional/<str:id>', views.indexProf, name="Profissional"),
    path('alterarUsuario/<int:id>', views.alterarUsuario, name="alterarUsuario"),
+   path('detalhesusuario/<int:id>', views.detalhesusuario, name="detalhesusuario"),
+
    #path('home/submit', views.set_index_usurious),
 
 

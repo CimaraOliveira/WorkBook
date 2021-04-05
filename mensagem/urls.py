@@ -1,8 +1,9 @@
 from django.urls import path,include
 from . import views
 
-
 urlpatterns = [
 
-   #path('mensagem/', views.mensagem, name='mensagem'),
+   path('enviarMensagem/<id>', views.enviarMensagem, name='enviarMensagem'),
+   path('responderMensagem/<int:remetente>', views.responderMensagem, name='responderMensagem'),
+   path('listarMensagem/', views.listarMensagem, name='listarMensagem'),
 ]

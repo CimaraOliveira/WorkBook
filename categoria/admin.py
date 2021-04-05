@@ -8,7 +8,7 @@ class UserAdmin(admin.ModelAdmin):
     #add_form = CustomUserCreationForm
     #form = CustomUserChangeForm
     model = Categoria
-    list_display = ['nome']
+    list_display = ['id','nome']
 
 
 

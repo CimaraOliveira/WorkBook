@@ -1,0 +1,46 @@
+{% extends 'model-page.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+
+<main class="app-content">
+
+<div class="app-title">
+        <div>
+            <h1><i class="fa fa-list"></i>Dados Pessoais</h1>
+            <p>Meus Dados</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <div class="card-body">
+
+                            <b>Nome:</b> {{usuario.username}}<br><br/>
+                            <b>E-mail:</b> {{usuario.email}}<br><br/>
+                            <b>Telefone:</b> {{usuario.telefone}}<br><br/>
+                            <b>Cidade:</b> {{usuario.cidade}}<br><br/>
+
+
+                            <br/>
+                            <div class="row">
+                                <div class="col">
+                                    <a class="btn btn-primary block" href="{% url 'usuario:alterarUsuario' request.user.id %}">Alterar</a>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+{% endblock %}

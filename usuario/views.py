@@ -14,6 +14,8 @@ from django.contrib import auth
 from django.core.mail import send_mail
 from .form import AlterUsuForm
 from django.contrib.auth.decorators import login_required
+from .models import FormDadosUsu
+
 
 
 
@@ -153,3 +155,16 @@ def alterarUsuario(request, id):
     data['form'] = form
     data['usuario'] = usuario
     return render(request, 'alterarUsuario.html',data)
+
+def detalhesusuario(request,id):
+    data = {}
+    usuario = Usuario.objects.get(id=id)
+    form = FormDadosUsu(request.POST or None, instance=usuario)
+
+    if form.is_valid():
+        form.save()
+        return redirect('disciplina:listar')
+
+    data['form'] = form
+    data['usuario'] = usuario
+    return render(request, 'detalhesusuario.html', data)

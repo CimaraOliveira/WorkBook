@@ -1,13 +1,12 @@
 from django.db import models
 
-# Create your models here.
-from usuario.models import Usuario
-
-
 class Mensagem(models.Model):
     texto = models.CharField('texto',max_length=500)
-    mensageiro = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True, blank=True, related_name='mensageiro')
-    destinatario = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True, blank=True, related_name='destinatario')
-
+    destinatario = models.IntegerField('destinatario', blank=True, null=True)
+    remetente = models.IntegerField('remetente', blank=True, null=True)
+    nomeRemetente = models.CharField('nomeRemetente',max_length=100)
     class Meta:
         db_table = 'Mensagen'
+        verbose_name = 'Mensagem'
+        verbose_name_plural = 'Mensagens'
+
