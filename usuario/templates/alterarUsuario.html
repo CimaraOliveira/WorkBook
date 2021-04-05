@@ -1,0 +1,85 @@
+{% extends 'model-page.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+
+<main class="app-content-home">
+
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-edit"></i>Alterar Dados Pessoais</h1>
+            <p>Informe seus dados</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form class="form" method="post">
+                            {% csrf_token %}
+
+                            <div class="row">
+                                <div id="show_class" class="col-lg-12">
+                                    <div class="form-group">
+                                        <label for="nome">Usuario:</label>
+                                        <input class="form-control" name="nome" id="nome" type="text"
+                                               value="{{ form.username.value }}"
+                                               placeholder="Usuário">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="first_name">Nome:</label>
+                                        <input class="form-control" name="username" id="first_name" type="text"
+                                               value="{{ form.first_name.value }}"
+                                               placeholder="Nome">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email">Email:</label>
+                                        <input class="form-control" name="email" id="email" type="email"
+                                               aria-describedby="emailHelp"
+                                               placeholder="Email"  value="{{ form.email.value }}">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="cidade">Cidade:</label>
+                                        <input class="form-control" name="cidade" id="cidade" type="text"
+                                               aria-describedby="cidade"
+                                               placeholder="Cidade"  value="{{ form.cidade.value }}">
+                                    </div>
+
+                                     <div class="form-group">
+                                        <label for="estado">Estado:</label>
+                                        <input class="form-control" name="estado" id="estado" type="text"
+                                               aria-describedby="estado"
+                                               placeholder="Estado"  value="{{ form.estado.value }}">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="telefone">Telefone:</label>
+                                        <input class="form-control" name="telefone" id="telefone" type="tel"
+                                               aria-describedby="telefone"
+                                               placeholder="Telefone"  value="{{ form.telefone.value }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="senha">Senha:</label>
+                                        <input class="form-control" name="senha" id="senha" type="password"
+                                               placeholder="senha"  value="{{ form.senha.value }}">
+                                    </div>
+
+                                    <div class="tile-footer">
+                                        <button class="btn btn-primary" type="submit">Alterar</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+{% endblock %}

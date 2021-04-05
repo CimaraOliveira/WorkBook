@@ -12,6 +12,7 @@ urlpatterns = [
    path('logout/', views.logout_user),
    path('home', views.home_perfil, name="home"),
    path('perfilProfissional/<str:id>', views.indexProf, name="Profissional"),
+   path('alterarUsuario/<int:id>', views.alterarUsuario, name="alterarUsuario"),
    #path('home/submit', views.set_index_usurious),
 
 

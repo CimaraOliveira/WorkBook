@@ -4,7 +4,6 @@ from django.contrib import messages
 from rolepermissions.checkers import has_role
 from rolepermissions.permissions import grant_permission
 from rolepermissions.roles import assign_role
-
 import usuario
 from WorkBook.roles import Profissional
 from WorkBook.roles import Usuario_Role
@@ -13,6 +12,9 @@ from perfil.models import Perfil
 from .models import Usuario
 from django.contrib import auth
 from django.core.mail import send_mail
+from .form import AlterUsuForm
+from django.contrib.auth.decorators import login_required
+
 
 
 # buscar categorias pelos ids informados no html
@@ -108,6 +110,7 @@ def perfil(request):
         return render(request, 'perfil.html', {"categorias": categorias})
     user_request = register(request)
     username = user_request.get('username')
+    first_name = request.POST['first_name']
     email = user_request.get('email')
     senha = user_request.get('senha')
     cidade = user_request.get('cidade')
@@ -119,7 +122,7 @@ def perfil(request):
     if not user_db:
         messages.success(request, 'Usuário Registrado com Sucesso!')
 
-        new_user = Usuario.objects.create_superuser(username=username,
+        new_user = Usuario.objects.create_superuser(username=username,first_name=first_name,
                                                     email=email, password=senha, cidade=cidade, telefone=telefone,
                                                     perfil=perfil)
         if perfil:
@@ -135,3 +138,18 @@ def perfil(request):
         new_user.save()
     messages.error(request, 'Usuário já Registrado. Tente outro e-mail!')
     return redirect('usuario:submit_login')
+
+#@login_required(login_url='usuario:submit_login')
+def alterarUsuario(request, id):
+    data = {}
+    usuario = Usuario.objects.get(id=id)
+    form = AlterUsuForm(request.POST or None, instance=usuario)
+
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'Dados alterados com Sucesso!')
+        return redirect('usuario:index')
+
+    data['form'] = form
+    data['usuario'] = usuario
+    return render(request, 'alterarUsuario.html',data)
