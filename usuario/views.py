@@ -36,14 +36,15 @@ def index(request):
 
 
 # mostrar perfil
-def indexProf(request, id):
+def PerfilProf(request, id):
 
     try:
-        perf = Usuario.objects.get(perfil_id=id)
-        if perf:
-            return render(request, 'PerfilProfissional.html', {'ListPerfil': perf})
+        user = Usuario.objects.get(id=id)
+        if user.perfil:
+            return render(request, 'PerfilProfissional.html', {'ListPerfil': user})
     except:
-        return render(request,'PerfilProfissional.html')
+        print()
+    return render(request, 'PerfilProfissional.html')
 
 def home(request):
     return render(request, 'home.html')
@@ -120,7 +121,7 @@ def perfil(request):
     perfil = user_request.get('perfil')
 
     user_db = Usuario.objects.filter(email=email)
-    #crie um novo profissional
+
     if not user_db:
         messages.success(request, 'Usuário Registrado com Sucesso!')
 

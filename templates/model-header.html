@@ -110,7 +110,7 @@
 <!-- Sidebar menu-->
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
-    <!--e qual era o outro era no pesquisar cidade nao ta funcionando .ok mostre aííííííííííí-->
+
     <ul class="app-menu">
 
         <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-home"></i><span
@@ -120,11 +120,8 @@
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-bars">
             </i><span class="app-menu__label"> Meus Dados</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
-            <li><a class="treeview-item" href="{% url 'usuario:Profissional' request.user.id %}"><i class="icon fa fa-user"></i> Perfil</a></li>
-            <!--<li><a class="treeview-item" href="{% url 'usuario:alterarUsuario' request.user.id%}"><i class="icon fa fa-user"></i> Alterar Dados</a></li>-->
-            <li><a class="treeview-item" href="{% url 'usuario:detalhesusuario' request.user.id%}"><i class="icon fa fa-list"></i>Dados Pessoais</a></li>
-
-                <li><a class="treeview-item" href="#"><i class="icon fa fa-edit"></i> Editar Perfil</a></li>
+            <li><a class="treeview-item" href="{% url 'usuario:Profissional' request.user.id%}"><i class="icon fa fa-user"></i> Perfil</a></li>
+            <li><a class="treeview-item" href="{% url 'usuario:detalhesusuario' request.user.id%}"><i class="icon fa fa-edit"></i>Alterar Dados</a></li>
 
           </ul>
         </li>

@@ -33,82 +33,76 @@
 <main class="app-content-home">
     <div class="page-content page-container" id="page-content">
         {% if ListPerfil is None %}
-        <div>Perfil nao encontrado</div>
+            <div>Perfil nao encontrado</div>
         {% endif %}
 
         {% if ListPerfil is not None %}
-        <div class="padding">
-            <div class="row container d-flex justify-content-center">
-                <div class="col-xl-12 col-md-12">
-                    <div class="card user-card-full">
-                        <div class="row m-l-0 m-r-0">
-                            <div class="col-sm-4 bg-c-lite-green user-profile">
-                                <div class="card-block text-center text-white">
-                                    <div class="m-b-25"><img src="https://img.icons8.com/bubbles/100/000000/user.png"
-                                                             class="img-radius" alt="User-Profile-Image"></div>
-                                    <h6 class="f-w-600">{{ ListPerfil.nome }}</h6>
-                                    <p>{{ ListPerfil.perfil.nome }}</p> <i
-                                        class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
-                                </div>
-                            </div>
-                            <div class="col-sm-8">
-                                <div class="card-block">
-                                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Informações do Profissional</h6>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <p class="m-b-10 f-w-600">Nome</p>
-                                            <h6 class="text-muted f-w-400">{{ ListPerfil.username }}</h6>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <p class="m-b-10 f-w-600">Email</p>
-                                            <h6 class="text-muted f-w-400">{{ ListPerfil.email }}</h6>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <p class="m-b-10 f-w-600">Telefone</p>
-                                            <h6 class="text-muted f-w-400">{{ ListPerfil.telefone }}</h6>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <p class="m-b-10 f-w-600">Cidade</p>
-                                            <h6 class="text-muted f-w-400">{{ ListPerfil.cidade }}</h6>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <p class="m-b-10 f-w-600">Descrição</p>
-                                            <h6 class="text-muted f-w-400">{{ ListPerfil.perfil.decricao }}</h6>
-                                        </div>
+            <div class="padding">
+                <div class="row container d-flex justify-content-center">
+                    <div class="col-xl-12 col-md-12">
+                        <div class="card user-card-full">
+                            <div class="row m-l-0 m-r-0">
+                                <div class="col-sm-4 bg-c-lite-green user-profile">
+                                    <div class="card-block text-center text-white">
+                                        <div class="m-b-25"><img src="https://img.icons8.com/bubbles/100/000000/user.png"
+                                                                 class="img-radius" alt="User-Profile-Image"></div>
+                                        <h6 class="f-w-600">{{ ListPerfil.nome }}</h6>
+                                        <p>{{ ListPerfil.perfil.nome }}</p> <i
+                                            class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                                     </div>
-                                    <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h6>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <p class="m-b-10 f-w-600"></p>
-                                           <button type="submit" value="avaliar" class="btn btn-primary">
-                                                <i class="fa fa-envelope" aria-hidden="true"></i> Mensagem
-                                            </button>
-                                            <!--<a href="{% url 'enviarMensagem' usuario.id %}"></a>-->
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="card-block">
+                                        <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Informações do Profissional</h6>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600">Nome</p>
+                                                <h6 class="text-muted f-w-400">{{ ListPerfil.username }}</h6>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600">Email</p>
+                                                <h6 class="text-muted f-w-400">{{ ListPerfil.email }}</h6>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600">Telefone</p>
+                                                <h6 class="text-muted f-w-400">{{ ListPerfil.telefone }}</h6>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600">Cidade</p>
+                                                <h6 class="text-muted f-w-400">{{ ListPerfil.cidade }}</h6>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600">Descrição</p>
+                                                <h6 class="text-muted f-w-400">{{ ListPerfil.perfil.decricao }}</h6>
+                                            </div>
+                                        </div>
+                                        <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h6>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600"></p>
+                                               <button type="submit" href="{% url 'enviarMensagem' ListPerfil.id %}" value="Mensagem" class="btn btn-primary">
+                                                    <i class="fa fa-envelope" aria-hidden="true"></i> Mensagem
+                                                </button>
+                                                <!--<a href="{% url 'enviarMensagem' ListPerfil.id %}"></a>-->
 
-                                            <button type="submit" value="avaliar" class="btn btn-primary">
-                                                <i class="app-menu__icon fa fa-star"></i> Avaliar
-                                            </button>
+                                                <button type="submit" value="avaliar" class="btn btn-primary">
+                                                    <i class="app-menu__icon fa fa-star"></i> Avaliar
+                                                </button>
+
+                                            </div>
 
                                         </div>
-                                        <!--<div class="col-sm-6">
-                                            <p class="m-b-10 f-w-600"></p>
-                                            <button type="submit" value="avaliar" class="btn btn-primary">
-                                                <i class="fa fa-envelope" aria-hidden="true"></i> Mensagem
-                                            </button>
-                                        </div>-->
+
                                     </div>
 
+
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    {% endif %}
+        {% endif %}
     </div>
 </main>
 {% endblock %}
