@@ -80,13 +80,15 @@
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <p class="m-b-10 f-w-600"></p>
-                                               <div class="col">
+                                                {% if request.user.username %}
+                                                    <div class="col">
                                                         <a class="btn btn-primary block"
                                                            href="{% url 'enviarMensagem' ListPerfil.id %}">Mensagem</a>
                                                         <a class="btn btn-primary block"
                                                            href="#">Avaliar</a>
 
                                                     </div>
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>

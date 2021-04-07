@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.db.models import Q
 from rolepermissions.checkers import has_role
-from rolepermissions.permissions import grant_permission
-from rolepermissions.roles import assign_role
 import usuario
 from WorkBook.roles import Profissional
 from WorkBook.roles import Usuario_Role
@@ -15,13 +14,6 @@ from django.core.mail import send_mail
 from .form import AlterUsuForm
 from django.contrib.auth.decorators import login_required
 from .models import FormDadosUsu
-
-def listarProfissional(request,id):
-    usuario = Usuario.objects.filter(perfil_id=id)
-    context = {
-        'usuario': usuario
-    }
-    return render(request, 'listarProfissional.html', context)
 
 
 # buscar categorias pelos ids informados no html
@@ -38,7 +30,6 @@ def get_categorias(request):
 
 def index(request):
     return render(request, 'index.html')
-
 
 # mostrar perfil
 def PerfilProf(request,id):
@@ -58,15 +49,28 @@ def home(request):
 
 # buscando profissões pelo nome na tela home
 def home_perfil(request):
-    query = "select * from perfil p inner join usuario u on(p.id = u.perfil_id)where p.nome = %s"
     List = None
 
     nome = request.GET.get('profissao')
     if nome:
-        List = Perfil.objects.raw(query, [nome])
+        List = Perfil.objects.filter(nome__contains=nome)
 
     return render(request, 'home.html', {'List': List})
 
+#Buscando na tela index por serviço e cidade
+def index_perfil(request):
+    List = None
+
+    nome = request.GET.get('profissao')
+    cidade = request.GET.get('destino')
+
+    if nome and cidade:
+        List = Usuario.objects.filter((Q(cidade__contains=cidade))
+                                      & (Q(perfil__nome__contains=nome))
+                                      & (Q(perfil__isnull=False))
+                                      )
+
+    return render(request, 'index.html', {'List': List})
 
 def logout_user(request):
     logout(request)
@@ -133,8 +137,8 @@ def perfil(request):
         new_user = Usuario.objects.create_superuser(username=username,first_name=first_name,
                                                     email=email, password=senha, cidade=cidade, telefone=telefone,
                                                     perfil=perfil)
-        if perfil:
-            assign_role(new_user, 'profissional')
+
+
         send_mail(
             'Sua Conta foi Criada!',
             '%s, Cadastro Realizado com Sucesso!' % username,
