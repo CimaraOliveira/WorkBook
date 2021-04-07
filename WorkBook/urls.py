@@ -31,6 +31,8 @@ urlpatterns = [
     path('avaliacao/', include('avaliacao.urls')),
     path('', RedirectView.as_view(url='usuario/home')),
     path('accounts/', include('accounts.urls')),
+    path('api/', include('api.urls')),
+
 ]
 
 
