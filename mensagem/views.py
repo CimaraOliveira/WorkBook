@@ -7,7 +7,7 @@ from django.db.models import Q
 
 @login_required(login_url='usuario:submit_login')
 def enviarMensagem(request,id):
-    usuario = get_object_or_404(Usuario, perfil_id=id)
+    usuario = get_object_or_404(Usuario, id=id)
     user = request.user.id
     form = MensagemForm(request.POST)
     if form.is_valid():

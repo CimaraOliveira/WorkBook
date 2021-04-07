@@ -49,13 +49,6 @@
 </header>
 
 <main class="app-content-home">
-    <!--<div class="row user">
-        <div class="col-md-12">
-            <div class="profile">
-                <div class="cover-image"></div>
-            </div>
-        </div>
-    </div>-->
 
     <form method="GET">
         {%csrf_token %}
@@ -91,6 +84,7 @@
             <div class="col-md-2 col-xs-1">
                 <div class="form-group">
 
+
                     <label></label>
                     <div style="padding: 3px; height: auto;">
                         <button type="submit" value="Buscar" class="btn btn-primary">
@@ -99,7 +93,6 @@
                                     aria-hidden="true"></em> Buscar
                         </button>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -125,7 +118,7 @@
                         <td>{{usuario.cidade}}</td>
                         <td>
                             <div class="col-md-4 col-xs-3">
-                                <a class="btn btn-primary" href="{% url 'usuario:Profissional' request.user.id %}" type="submit">+</a>
+                                <a class="btn btn-primary" href="{% url 'usuario:Profissional' usuario.id %}" type="submit">+</a>
                             </div>
                         </td>
                     </tr>
@@ -137,7 +130,7 @@
             </div>
         </div>
     </div>
-    </div>
+
     {% endif %}
 
 </main>

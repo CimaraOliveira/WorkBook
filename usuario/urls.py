@@ -15,7 +15,7 @@ urlpatterns = [
    path('alterarUsuario/<int:id>', views.alterarUsuario, name="alterarUsuario"),
    path('detalhesusuario/<int:id>', views.detalhesusuario, name="detalhesusuario"),
 
-   #path('home/submit', views.set_index_usurious),
+   path('listarProfissional/<int:id>', views.listarProfissional, name='listarProfissional'),
 
 
 ]

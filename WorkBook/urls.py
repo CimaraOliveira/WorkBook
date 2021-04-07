@@ -29,6 +29,7 @@ urlpatterns = [
     path('login/', views.submit_login),
     path('mensagem/', include('mensagem.urls')),
     path('avaliacao/', include('avaliacao.urls')),
+    path('perfil/', include('avaliacao.urls')),
     path('', RedirectView.as_view(url='usuario/home')),
     path('accounts/', include('accounts.urls')),
     path('api/', include('api.urls')),

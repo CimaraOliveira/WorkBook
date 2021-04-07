@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from rolepermissions.checkers import has_role
@@ -16,7 +16,12 @@ from .form import AlterUsuForm
 from django.contrib.auth.decorators import login_required
 from .models import FormDadosUsu
 
-
+def listarProfissional(request,id):
+    usuario = Usuario.objects.filter(perfil_id=id)
+    context = {
+        'usuario': usuario
+    }
+    return render(request, 'listarProfissional.html', context)
 
 
 # buscar categorias pelos ids informados no html
@@ -36,15 +41,16 @@ def index(request):
 
 
 # mostrar perfil
-def PerfilProf(request, id):
-
+def PerfilProf(request,id):
     try:
-        user = Usuario.objects.get(id=id)
+        user = Usuario.objects.get(perfil_id=id)
+        print('****', user.username, '****', user.id, '****', user.perfil)
         if user.perfil:
             return render(request, 'PerfilProfissional.html', {'ListPerfil': user})
     except:
         print()
     return render(request, 'PerfilProfissional.html')
+
 
 def home(request):
     return render(request, 'home.html')
@@ -52,8 +58,7 @@ def home(request):
 
 # buscando profissões pelo nome na tela home
 def home_perfil(request):
-    # query nativa
-    query = "select * from perfil p inner join usuario u on(p.id = u.id)where p.nome = %s"
+    query = "select * from perfil p inner join usuario u on(p.id = u.perfil_id)where p.nome = %s"
     List = None
 
     nome = request.GET.get('profissao')
@@ -142,7 +147,7 @@ def perfil(request):
     messages.error(request, 'Usuário já Registrado. Tente outro e-mail!')
     return redirect('usuario:submit_login')
 
-#@login_required(login_url='usuario:submit_login')
+@login_required(login_url='usuario:submit_login')
 def alterarUsuario(request, id):
     data = {}
     usuario = Usuario.objects.get(id=id)
@@ -157,6 +162,7 @@ def alterarUsuario(request, id):
     data['usuario'] = usuario
     return render(request, 'alterarUsuario.html',data)
 
+@login_required(login_url='usuario:submit_login')
 def detalhesusuario(request,id):
     data = {}
     usuario = Usuario.objects.get(id=id)
