@@ -71,13 +71,17 @@
 
         <li><a class="app-menu__item" href="{% url 'usuario:index' %}"><i class="app-menu__icon fa fa-home"></i><span
                 class="app-menu__label">Inicio</span></a></li>
+        {% if request.user.perfil_id %}
         <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-star"></i><span
                 class="app-menu__label">Avaliações</span></a></li>
+        {% endif %}
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-bars">
             </i><span class="app-menu__label"> Dados Pessoais</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
+             {% if request.user.perfil_id %}
             <li><a class="treeview-item" href="{% url 'usuario:Profissional' request.user.id%}"><i class="icon fa fa-user"></i> Perfil</a></li>
-            <li><a class="treeview-item" href="{% url 'usuario:detalhesusuario' request.user.id%}"><i class="icon fa fa-edit"></i>Alterar Dados</a></li>
+             {% endif %}
+              <li><a class="treeview-item" href="{% url 'usuario:detalhesusuario' request.user.id%}"><i class="icon fa fa-edit"></i>Alterar Dados</a></li>
 
           </ul>
         </li>
@@ -87,11 +91,14 @@
             <li><a class="treeview-item" href="{% url 'listarMensagem' %}"><i class="icon fa fa-commenting-o"></i>Caixa de Entrada</a></li>
           </ul>
         </li>
+         {% if request.user.perfil_id %}
         <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-users"></i><span
                 class="app-menu__label">Meus Clientes</span></a></li>
 
+
         <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-file-text"></i><span
                 class="app-menu__label">Relatório</span></a></li>
+         {% endif %}
         <li><a class="app-menu__item" href="{% url 'usuario:submit_login' %}"><i class="app-menu__icon fa fa-sign-out"></i><span
                 class="app-menu__label">Sair</span></a></li>
 
