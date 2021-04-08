@@ -34,7 +34,7 @@ def index(request):
 # mostrar perfil
 def PerfilProf(request,id):
     try:
-        user = Usuario.objects.get(perfil_id=id)
+        user = Usuario.objects.get(id=id)
         print('****', user.username, '****', user.id, '****', user.perfil)
         if user.perfil:
             return render(request, 'PerfilProfissional.html', {'ListPerfil': user})
@@ -53,7 +53,7 @@ def home_perfil(request):
 
     nome = request.GET.get('profissao')
     if nome:
-        List = Perfil.objects.filter(nome__contains=nome)
+        List = Usuario.objects.filter(perfil__nome__contains=nome)
 
     return render(request, 'home.html', {'List': List})
 

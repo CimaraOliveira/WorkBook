@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 
-# Create your views here.
+
 def avaliacao(request):
     return render(request, 'avaliacao.html')
 
