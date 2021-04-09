@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'perfil.apps.PerfilConfig',
     'mensagem',
     'accounts',
+    'relatorio',
     'rolepermissions',
 ]
 

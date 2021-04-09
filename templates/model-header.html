@@ -28,7 +28,7 @@
 </head>
 <body class="app sidebar-mini">
 <!-- Navbar-->
-<header class="app-header"><a class="app-header__logo" href="{% url 'usuario:index' %}">WorkBook</a>
+<header class="app-header"><a class="app-header__logo" href="{% url 'usuario:index' %}">BusqueAqui</a>
     <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
                                     aria-label="Hide Sidebar"></a>
     <!-- Navbar Right Menu-->
@@ -96,7 +96,7 @@
                 class="app-menu__label">Meus Clientes</span></a></li>
 
 
-        <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-file-text"></i><span
+        <li><a class="app-menu__item" href="{% url 'gerar_relatorio' %}"><i class="app-menu__icon fa fa-file-text"></i><span
                 class="app-menu__label">Relatório</span></a></li>
          {% endif %}
         <li><a class="app-menu__item" href="{% url 'usuario:logout_user' %}"><i class="app-menu__icon fa fa-sign-out"></i><span
