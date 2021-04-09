@@ -6,7 +6,7 @@ from django.forms import ModelForm
 class AlterUsuForm(ModelForm):
     class Meta:
         model = Usuario
-        fields = ['username', 'nome','email','cidade','estado','telefone','senha',]
+        fields = ['username', 'first_name','email','cidade','estado','telefone','senha',]
 
 
 

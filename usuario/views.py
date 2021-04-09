@@ -36,7 +36,6 @@ def PerfilProf(request,id):
     try:
         user = Usuario.objects.get(id=id)
         if user.perfil:
-            print('****', user.username, '****', user.id, '****', user.perfil)
             return render(request, 'PerfilProfissional.html', {'ListPerfil': user})
     except Exception as error:
         print(error)
@@ -197,6 +196,7 @@ def alterarUsuario(request, id):
     data['form'] = form
     data['usuario'] = usuario
     return render(request, 'alterarUsuario.html',data)
+
 
 @login_required(login_url='usuario:submit_login')
 def detalhesusuario(request,id):
