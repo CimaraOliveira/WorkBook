@@ -114,6 +114,7 @@ def submit_login(request):
     user = auth.authenticate(username=username, password=password)
     if user is not None:
         login(request, user)
+        messages.success(request, 'Login efetuado Sucesso!')
         return redirect('usuario:index')
     return redirect('usuario:submit_login')
 
