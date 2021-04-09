@@ -4,7 +4,11 @@
 $(document).ready(function(){
     // verificar se esse id existe no documento html
     if ($("#show_profissional").length){
-        hide_profissional();
+        if (document.getElementById('optionsRadios1').checked){
+            hide_profissional();
+        } else {
+            show_profissional();
+        }
     }
 });
 

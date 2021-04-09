@@ -35,11 +35,11 @@ def index(request):
 def PerfilProf(request,id):
     try:
         user = Usuario.objects.get(id=id)
-        print('****', user.username, '****', user.id, '****', user.perfil)
         if user.perfil:
+            print('****', user.username, '****', user.id, '****', user.perfil)
             return render(request, 'PerfilProfissional.html', {'ListPerfil': user})
-    except:
-        print()
+    except Exception as error:
+        print(error)
     return render(request, 'PerfilProfissional.html')
 
 
@@ -48,7 +48,7 @@ def home(request):
 
 
 # buscando profissões pelo nome na tela home
-def home_perfil(request):
+'''def home_perfil(request):
     List = None
 
     nome = request.GET.get('profissao')
@@ -70,11 +70,38 @@ def index_perfil(request):
                                       & (Q(perfil__isnull=False))
                                       )
 
-    return render(request, 'index.html', {'List': List})
+    return render(request, 'index.html', {'List': List})'''
+
+def is_user_logado(request):
+    if request.user.username:
+        return True
+    return False
+
+#Buscando na tela index por serviço e cidade
+def index_perfil(request):
+    List = None
+
+    nome = request.GET.get('profissao')
+    cidade = request.GET.get('destino')
+
+    if is_user_logado(request):
+        if nome and cidade:
+
+            List = Usuario.objects.filter((Q(cidade__contains=cidade))
+                                          & (Q(perfil__nome__contains=nome))
+                                          & (Q(perfil__isnull=False))
+                                          )
+
+        return render(request, 'index.html', {'List': List})
+    elif nome:
+        List = Usuario.objects.filter(perfil__nome__contains=nome)
+    return render(request, 'home.html', {'List': List})
+
 
 def logout_user(request):
+    request.session.flush()
     logout(request)
-    return redirect('submit_login')
+    return redirect('usuario:submit_login')
 
 
 def submit_login(request):
@@ -114,12 +141,14 @@ def prof(request):
         return perfil
     return None
 
+def __get__register(request, user, error):
+    categorias = Categoria.objects.all()
+    return render(request, 'perfil.html', {"categorias": categorias, 'user': user, 'error': error})
+
 
 def perfil(request):
     if request.method != 'POST':
-        categorias = Categoria.objects.all()
-
-        return render(request, 'perfil.html', {"categorias": categorias})
+        return __get__register(request, None, None)
     user_request = register(request)
     username = user_request.get('username')
     first_name = request.POST['first_name']
@@ -129,16 +158,17 @@ def perfil(request):
     telefone = user_request.get('telefone')
     perfil = user_request.get('perfil')
 
+    user = {'username': username, 'first_name': first_name, 'email': email, 'senha': senha, 'telefone': telefone, 'perfil': request.POST['user']}
+
     user_db = Usuario.objects.filter(email=email)
 
     if not user_db:
+        print('success')
         messages.success(request, 'Usuário Registrado com Sucesso!')
 
         new_user = Usuario.objects.create_superuser(username=username,first_name=first_name,
                                                     email=email, password=senha, cidade=cidade, telefone=telefone,
                                                     perfil=perfil)
-
-
         send_mail(
             'Sua Conta foi Criada!',
             '%s, Cadastro Realizado com Sucesso!' % username,
@@ -148,8 +178,9 @@ def perfil(request):
         )
 
         new_user.save()
-    messages.error(request, 'Usuário já Registrado. Tente outro e-mail!')
-    return redirect('usuario:submit_login')
+        return redirect('usuario:submit_login')
+    print('error')
+    return __get__register(request, user, {'error': 'Usuário já Registrado. Tente outro e-mail!'})
 
 @login_required(login_url='usuario:submit_login')
 def alterarUsuario(request, id):

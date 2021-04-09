@@ -85,8 +85,7 @@
                                                         <a class="btn btn-primary block"
                                                            href="{% url 'enviarMensagem' ListPerfil.id %}">Mensagem</a>
                                                         <a class="btn btn-primary block"
-                                                           href="{% url 'avaliacao' %}">Avaliar</a>
-
+                                                           href="{% url 'avaliacao:avaliacao' ListPerfil.id %}">Avaliar</a>
                                                     </div>
                                                  {% endif %}
                                             </div>
