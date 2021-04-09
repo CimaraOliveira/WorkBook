@@ -15,6 +15,8 @@ from .form import AlterUsuForm
 from django.contrib.auth.decorators import login_required
 from .models import FormDadosUsu
 
+def sobre(request):
+    return render(request, 'sobre.html')
 
 # buscar categorias pelos ids informados no html
 def get_categorias(request):

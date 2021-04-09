@@ -13,6 +13,7 @@ urlpatterns = [
    path('perfilProfissional/<str:id>', views.PerfilProf, name="Profissional"),
    path('alterarUsuario/<int:id>', views.alterarUsuario, name="alterarUsuario"),
    path('detalhesusuario/<int:id>', views.detalhesusuario, name="detalhesusuario"),
+   path('sobre/', views.sobre, name="sobre")
 
 
 

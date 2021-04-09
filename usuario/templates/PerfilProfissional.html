@@ -24,7 +24,7 @@
 
 
 </head>
-<header class="app-header__logo"><a class="app-header">&nbsp;&nbsp;&nbsp;&nbsp;BusqueAqui</a>
+<header class="app-header__logo"><a class="app-header">&nbsp;&nbsp;&nbsp;&nbsp;WorkBook</a>
 
 </header>
 
@@ -80,10 +80,11 @@
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <p class="m-b-10 f-w-600"></p>
-                                                {% if request.user.username %}
+
                                                     <div class="col">
                                                         <a class="btn btn-primary block"
                                                            href="{% url 'enviarMensagem' ListPerfil.id %}">Mensagem</a>
+                                                         {% if request.user.username %}
                                                         <a class="btn btn-primary block"
                                                            href="{% url 'avaliacao:avaliacao' ListPerfil.id %}">Avaliar</a>
                                                     </div>
