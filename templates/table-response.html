@@ -14,14 +14,14 @@
                 <tbody>
                     {% for usuario in List %}
                     <tr>
-                    <!--vcs vao usar imagem? queria mais ainda nao ta funcionando ok-->
+
                     <!--<td><img src="{{ usuario.foto.url }}" style="width: 95px"></td>-->
                     <td>{{usuario.nome}}</td>
                     <td>{{usuario.perfil.nome}}</td>
                     <td>{{usuario.cidade}}</td>
                     <td>
                         <div class="col-md-4 col-xs-3">
-                            <button title="Visualizar Perfil" class="btn btn-outline-success">
+                            <button title="Visualizar Perfil" class="btn btn-outline-primary">
                                 <a  style="all: unset;"
                                    href="{% url 'usuario:Profissional' usuario.id %}"
                                    type="submit">
@@ -42,6 +42,4 @@
         </div>
     </div>
 </div>
-{% else %}
-<div class="alert alert-info">{{ message }}</div>
 {% endif %}
