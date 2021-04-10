@@ -49,89 +49,45 @@
 </header>
 
 <main class="app-content-home">
-    <form method="GET">
-        {%csrf_token %}
-
-        <div class="row" style="display: flex;
+    <div class="row" style="display: flex;
                             flex-direction: row;
                             justify-content: center;
                             align-items: center;
                            ">
-
+        <form method="GET">
+            {%csrf_token %}
             <h1>Precisa contratar um serviço de forma rápida?
 
             </h1>
             <h1>
                 Aqui você encontrar com rapidez e eficiência!
             </h1>
-            <div class="col-md-6" >
-                <div class="form-group">
-                    <label>
-
-                    </label>
-                    <div class="input-group">
-                        <input type="text" id="profissao" class="form-control" name="profissao"
-                               placeholder="Digite o serviço que você precisa...">
-                        <span class="input-group-btn" id="clear-input-profissao">
-                            </span>
-
-                    </div>
-                    <div id="profissional_list"></div>
-                </div>
-            </div>
-
-            <div class="col-md-2 col-xs-1">
-                <div class="form-group">
-
-
-                    <label></label>
-                    <div style="padding: 3px; height: auto;">
-                        <button type="submit" value="Buscar" class="btn btn-primary">
-                            <em
-                                    class="fa fa-search"
-                                    aria-hidden="true"></em> Buscar
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-    <div class="clearfix"></div>
-    {% if List is not None %}
-    <div class="col-md-12">
-        <div class="tile">
-
-            <div class="table-responsive">
-
-                <table class="table">
-                    <thead>
-                    <tr>
-
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for usuario in List %}
-                    <tr>
-                        <td><img src="{{ usuario.foto.url }}" style="width: 95px"></td>
-                        <td>{{usuario.perfil.nome}}</td>
-                        <td>{{usuario.cidade}}</td>
-
-                        <td>
-                            <div class="col-md-4 col-xs-3">
-                                <a class="btn btn-primary" href="{% url 'usuario:Profissional' usuario.id %}" type="submit">+</a>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" id="profissao" class="form-control" name="profissao"
+                                       placeholder="Digite o serviço que você precisa...">
+                                <span class="input-group-btn" id="clear-input-profissao">
+                                </span>
+                               <!-- &nbsp;-->
+                                <button type="submit" value="Buscar" class="btn btn-primary">
+                                    <em
+                                            class="fa fa-search"
+                                            aria-hidden="true"></em> Buscar
+                                </button>
                             </div>
-                        </td>
-                    </tr>
-                    </tbody>
-
-                    {% endfor %}
-                </table>
-
+                            <div id="profissional_list"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 
-    {% endif %}
+    <div class="clearfix"></div>
+    {% include 'table-response.html' with List=List message='Sem resultado' %}
 
 </main>
 <script src="{% static 'js/jquery-3.3.1.min.js'%}"></script>

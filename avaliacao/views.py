@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, redirect
 
@@ -5,6 +6,7 @@ from avaliacao.models import Avaliacao
 from usuario.models import Usuario
 
 # funcao que retorna o usuario logado
+
 def _request_user(request):
     try:
         user = Usuario.objects.get(id=request.user.id)
@@ -14,6 +16,7 @@ def _request_user(request):
         print(err)
     return None
 # funcao que retorna o perfil pelo id
+
 def _request_perfil(id):
     try:
         prof = Usuario.objects.get(id=id)
@@ -26,8 +29,9 @@ def _request_perfil(id):
 def avaliacao(request, id):
     return render(request, 'avaliacao.html', {'perfil': _request_perfil(id)})
 
+
 def avaliar(request, id):
-    print('deu certo')
+
     if request.POST['descricao']:
        client = _request_user(request)
        prof = _request_perfil(id)
@@ -40,6 +44,7 @@ def avaliar(request, id):
        return redirect('usuario:index')
     return avaliacao(request)
 
+@login_required(login_url='usuario:submit_login')
 def listAvaliacao(request):
     avaliar = Avaliacao.objects.filter(proficional=request.user.id)
 

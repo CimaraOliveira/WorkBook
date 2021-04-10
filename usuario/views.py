@@ -117,6 +117,7 @@ def submit_login(request):
         login(request, user)
         messages.success(request, 'Login efetuado Sucesso!')
         return redirect('usuario:index')
+    messages.error(request, 'E-mail e/ou senha inválido!')
     return redirect('usuario:submit_login')
 
 

@@ -4,39 +4,38 @@
 
 
 <main class="app-content">
-
-<div class="app-title">
-        <div>
-            <h1><i class="fa fa-list"></i>Dados Pessoais</h1>
-            <p>Meus Dados</p>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="tile">
+                <h5><i class="fa fa-user"></i> Meus Dados</h5>
                 <div class="row">
                     <div class="col-lg-12">
-
-                        <div class="card-body">
-
-                            <b>Usuário:</b> {{usuario.username}}<br><br/>
-                            <b>Nome:</b> {{usuario.first_name}}<br><br/>
-                            <b>E-mail:</b> {{usuario.email}}<br><br/>
-                            <b>Telefone:</b> {{usuario.telefone}}<br><br/>
-                            <b>Cidade:</b> {{usuario.cidade}}<br><br/>
-
-
-                            <br/>
-                            <div class="row">
-                                <div class="col">
-                                    <a class="btn btn-primary block" href="{% url 'usuario:alterarUsuario' request.user.id %}">Alterar</a>
-
-                                </div>
-
-                            </div>
-                        </div>
-
+                        <table class="table table-hover">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <p><b class="text-uppercase">Usuário:</b> {{usuario.username}}</p>
+                                </td>
+                                <td>
+                                    <p><b class="text-uppercase">Nome:</b> {{usuario.first_name}}</p>
+                                </td>
+                                <td>
+                                    <p><b class="text-uppercase">E-mail:</b> {{usuario.email}}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p><b class="text-uppercase">Telefone:</b> {{usuario.telefone}}</p>
+                                </td>
+                                <td>
+                                    <p><b class="text-uppercase">Cidade:</b> {{usuario.cidade}}</p>
+                                </td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
+
                 </div>
             </div>
         </div>

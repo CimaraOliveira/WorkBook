@@ -2,108 +2,65 @@
 {% block content %}
 <main class="app-content">
     <!-- main do projetooo-->
-    <form method="GET">
-        {%csrf_token %}
-        {% include 'mensagens.html'  %}
+    <div class="row center-element">
+        <form method="GET">
+            {%csrf_token %}
+            {% include 'mensagens.html' %}
 
-        <div class="row" style="display: flex;
-                            flex-direction: row;
-                            justify-content: center;
-                            align-items: center;
-                           ">
+            <h1>Precisa contratar um serviço de forma rápida?<br/>Aqui você encontrar com rapidez e eficiência!</h1>
+            <br />
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <input type="text" id="profissao" class="form-control" name="profissao"
+                                   placeholder="Digite o serviço que você precisa...">
+                            <span class="input-group-btn" id="clear-input-profissao">
+                            </span>
+                            <div class="pl-2">
+                                <input type="text" id="destino" class="form-control" name="destino"
+                                       placeholder="Cidade" required>
 
-            <h1>Precisa contratar um serviço de forma rápida?
-
-            </h1>
-            <h1>
-                Aqui você encontrar com rapidez e eficiência!
-            </h1>
-
-
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label></label>
-                    <div class="input-group">
-                        <input type="text" id="profissao" class="form-control" name="profissao"
-                               placeholder="Digite o serviço que você precisa...">
-                        <span class="input-group-btn" id="clear-input-profissao">
-                        </span>
-
+                                <div class="row pl-3">
+                                    <div id="destino_list"></div>
+                                </div>
+                            </div>
+                            <div class="pl-2">
+                                <span class="input-group-btn " id="clear-input-destino">
+                                    <a onclick="clearInputDestino()"
+                                       class="btn btn-primary">
+                                        <i
+                                                class="fa fa-trash" style="color: #fff"></i>
+                                    </a>
+                                </span>
+                            </div>
+                            <div class="pl-2">
+                                <button type="submit" value="Buscar" class="btn btn-primary">
+                                    <em
+                                            class="fa fa-search"
+                                            aria-hidden="true"></em> Buscar
+                                </button>
+                            </div>
+                        </div>
+                        <div id="profissional_list"></div>
                     </div>
-                    <div id="profissional_list"></div>
-                </div>
-            </div>
-            <div class="col-md-3 ">
-
-                <div class="form-group">
-                    <div class="input-group">
-                        <input type="text" id="destino" class="form-control" name="destino"
-                               placeholder="Cidade" required>
-                        <span class="input-group-btn" id="clear-input-destino">
-                                                <button type="button" onclick="clearInputDestino()"
-                                                        class="btn btn-primary btn-md"><font
-                                                        style="vertical-align: inherit;"><font
-                                                        style="vertical-align: inherit;"><em
-                                                        class="fa fa-trash"></em></font></font></button>
-                                            </span>
-                    </div>
-                    <div id="destino_list"></div>
                 </div>
             </div>
 
             <div class="col-md-2 col-xs-1">
                 <div class="form-group">
-
-                    <label></label>
                     <div style="padding: 3px; height: auto;">
-                        <button type="submit" value="Buscar" class="btn btn-primary">
-                            <em
-                                    class="fa fa-search"
-                                    aria-hidden="true"></em> Buscar
-                        </button>
+
                     </div>
 
                 </div>
             </div>
-        </div>
 
-    </form>
-    <div class="clearfix"></div>
-    {% if List is not None %}
-    <div class="col-md-12">
-        <div class="tile">
-
-            <div class="table-responsive">
-
-                <table class="table">
-                    <thead>
-                    <tr>
-
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for usuario in List %}
-                    <tr>
-                        <td><img src="{{ usuario.foto.url }}" style="width: 95px"></td>
-                        <!--<td>{{usuario.nome}}</td>-->
-                        <td>{{usuario.perfil.nome}}</td>
-                        <td>{{usuario.cidade}}</td>
-                        <td>
-                            <div class="col-md-4 col-xs-3">
-                                <a class="btn btn-primary" href="{% url 'usuario:Profissional' usuario.id %}" type="submit">+</a>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-
-                    {% endfor %}
-                </table>
-
-            </div>
-        </div>
+        </form>
     </div>
 
-    {% endif %}
+    <div class="clearfix"></div>
+    {% include 'table-response.html' with List=List message='Sem resultado' %}
 
 </main>
 {% endblock %}
