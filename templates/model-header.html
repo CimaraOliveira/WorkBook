@@ -31,7 +31,8 @@
 <!-- Navbar-->
 <header class="app-header"><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
                               aria-label="Hide Sidebar"></a><a class="app-header__logo"
-                                                               href="{% url 'usuario:index' %}"><img class="landing-hero-banner" src="images/service.png">WorkBook</a>
+                                                               href="{% url 'usuario:index' %}">
+    <img  style=" filter: invert(100%)" height="50" src="{% static 'images/estacao-de-servico.svg' %}"> WorkBook</a>
     <!-- Sidebar toggle button-->
     <!-- Navbar Right Menu-->
     <ul class="app-nav">
@@ -82,11 +83,11 @@
                 class="app-menu__label">Avaliações</span></a></li>
         {% endif %}
         {% if request.user.perfil_id %}
-        <li><a class="treeview-item" href="{% url 'usuario:Profissional' request.user.id%}"><i
-                class="icon fa fa-user"></i> Perfil</a></li>
+        <li><a class="app-menu__item" href="{% url 'usuario:Profissional' request.user.id%}"><i class="app-menu__icon fa fa-user"></i><span
+                class="app-menu__label">Perfil</span></a></li>
         {% endif %}
-        <li><a class="app-menu__item" href="{% url 'usuario:detalhesusuario' request.user.id%}"><i
-                class="icon fa fa-user"></i> &nbsp;Meus Dados</a></li>
+        <li><a class="app-menu__item" href="{% url 'usuario:detalhesusuario' request.user.id%}"><i class="app-menu__icon fa fa-user"></i><span
+                class="app-menu__label">Meus Dados</span></a></li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
                 class="app-menu__icon fa fa-envelope-o">
         </i><span class="app-menu__label"> Mensagens</span><i class="treeview-indicator fa fa-angle-right"></i></a>
