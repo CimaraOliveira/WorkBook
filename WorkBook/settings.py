@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
+import django_heroku
 from django.contrib.messages import constants
 
 
@@ -28,7 +28,7 @@ SECRET_KEY = '^j#ivatxs-jy$2ilenruzir#4wvzans%v2jt4pz(ln9+ru$3(7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://worbook.herokuapp.com/']
 #AUTH_USER_MODEL = 'auth.models.User'
 # Application definition
 
@@ -160,3 +160,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "sistema.workbook.21@gmail.com"
 EMAIL_HOST_PASSWORD = "workbook2021"
+
+
+django_heroku.settings(locals())
