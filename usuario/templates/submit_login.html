@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
+{% load socialaccount %}
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -26,7 +28,7 @@
         <form class="login-form" action="{% url 'usuario:submit_login' %}" method="post">
             {% csrf_token %}
 
-            <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>SIGN IN</h3>
+            <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>SIGN IN <a href="{% provider_login_url 'google' %}"><span><i class="fa fa-google-plus-square"></i></span></a></h3>
             <div class="form-group">
                 <label class="control-label">USUÁRIO</label>
                 <input type="text" class="form-control" name="username" placeholder="Email" required="required">

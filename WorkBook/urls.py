@@ -34,6 +34,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('api/', include('api.urls')),
     path('relatorio/',include('relatorio.urls')),
+    path('accounts/', include('allauth.urls')),
 
 ]
 

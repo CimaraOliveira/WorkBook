@@ -38,6 +38,7 @@ ROLEPERMISSIONS_MODULE = 'WorkBook.roles'
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -46,8 +47,12 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     'drf_yasg',
 
-    'usuario.apps.UsuarioConfig',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 
+    'usuario.apps.UsuarioConfig',
     'avaliacao',
     'categoria',
     'perfil.apps.PerfilConfig',
@@ -56,6 +61,20 @@ INSTALLED_APPS = [
     'relatorio',
     'rolepermissions',
 ]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+SITE_ID = 1
 
 APPEND_SLASH = False
 
@@ -101,6 +120,20 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = [
+
+    'django.contrib.auth.backends.ModelBackend',
+
+    'allauth.account.auth_backends.AuthenticationBackend',
+
+]
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
+
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
