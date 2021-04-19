@@ -10,6 +10,8 @@ $(document).ready(function(){
             show_profissional();
         }
     }
+
+
 });
 
 $("#optionsRadios2").click(function(){
@@ -34,4 +36,9 @@ function hide_profissional(){
     div_class.setAttribute('class', 'col-lg-12')
 }
 
+
+function gotoBottom(){
+   var element = document.getElementById("sobre");
+   element.scrollTop = element.scrollHeight - element.clientHeight;
+}
 
