@@ -40,10 +40,7 @@ def mensagens_por_usuario(request):
           "	where u4.id != (select u5.id from usuario u5 where u5.id =" \
           " %s and u5.id = m2.remetente_id) ORDER by m2.id DESC) ORDER by u.id DESC"
     usuarios = Usuario.objects.raw(sql, [request.user.id, request.user.id])
-    sqlMen = "select * from Mensagen m " \
-             "inner join usuario u on (u.id = m.destinatario_id) " \
-             "inner join usuario u2 on (u2.id = m.remetente_id) " \
-             "where u.id = %s or u2.id = %s ORDER by m.id DESC limit 1"
+
     mensagens = []
     id = request.user.id
     for user in usuarios:
@@ -69,14 +66,14 @@ def listarMensagem(request, idDestinatario):
 
 @login_required(login_url='usuario:submit_login')
 def detalheMensagem(request, idRemetente, idDestinatario):
-    print(idRemetente, idDestinatario)
+    #print(idRemetente, idDestinatario)
     mensagens = mensagens_por_usuario(request)
     mensagens_detalhe = Mensagem.objects.filter(
         (Q(destinatario__id=idDestinatario) & Q(remetente__id=idRemetente)) |
         (Q(destinatario__id=idRemetente) & Q(remetente__id=idDestinatario))).order_by('id')
 
-    for m in mensagens_detalhe:
-        print(m.texto)
+    #for m in mensagens_detalhe:
+     #   print(m.texto)
 
     context = {
         'mensagens_detalhe': mensagens_detalhe,
@@ -92,11 +89,13 @@ def responderMensagem(request, idRemetente, idDestinatario):
     respMensagem = Mensagem.objects.filter(Q(remetente__id=idRemetente) & Q(destinatario__id=idDestinatario)).first()
     user = request.user.id
     form = MensagemForm(request.POST)
+
     if form.is_valid():
         form.save()
         return redirect('listarMensagem', idDestinatario=idDestinatario)
     else:
         form = MensagemForm(request.POST)
+        print(form)
     context = {
         'form': form,
         'respMensagem': respMensagem,

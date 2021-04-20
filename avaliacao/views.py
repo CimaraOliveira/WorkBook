@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, redirect
@@ -37,8 +39,11 @@ def avaliar(request, id):
        prof = _request_perfil(id)
        descricao = request.POST['descricao']
        nota = request.POST['fb']
+
+       data_e_hora_atuais = datetime.now()
+       data = data_e_hora_atuais.strftime("%d/%m/%Y %H:%M:%S")
        if client and prof:
-            avaliar = Avaliacao.objects.create(descricao=descricao, nota=nota, cliente=client, proficional=prof)
+            avaliar = Avaliacao.objects.create(descricao=descricao, nota=nota, cliente=client, proficional=prof, data_avaliacao=data)
             avaliar.save()
 
        return redirect('usuario:index')
