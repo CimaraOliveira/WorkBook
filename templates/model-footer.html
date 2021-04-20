@@ -6,6 +6,7 @@
 <script src="{% static 'js/consumo-cep.js'%}"></script>
 <!-- The javascript plugin to display page loading on top-->
 <script src="{% static 'js/plugins/pace.min.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/plugins/bootstrap-notify.min.js'%}"></script>
 <!-- Page specific javascripts-->
 <!-- Google analytics script-->
 <footer class="landing-footer"><b></b><a href="https://github.com/cleocardoso/WorkBook" target="_blank" rel="noopener">WorkBook 2021</a></footer>
@@ -19,3 +20,41 @@
       	ga('send', 'pageview');
       }
 </script>
+ <script type="text/javascript">
+      $('#demoNotify').click(function(){
+      	$.notify({
+      		title: "Avaliação : ",
+      		message: "Salva com sucesso!",
+      		icon: 'fa fa-check'
+      	},{
+      		type: "info"
+      	});
+      });
+      $('#demoNotify1').click(function(){
+      	$.notify({
+      		title: "Mensagem : ",
+      		message: "Enviada com sucesso!",
+      		icon: 'fa fa-check'
+      	},{
+      		type: "info"
+      	});
+      });
+      $('#demoSwal').click(function(){
+      	swal({
+      		title: "Are you sure?",
+      		text: "You will not be able to recover this imaginary file!",
+      		type: "warning",
+      		showCancelButton: true,
+      		confirmButtonText: "Yes, delete it!",
+      		cancelButtonText: "No, cancel plx!",
+      		closeOnConfirm: false,
+      		closeOnCancel: false
+      	}, function(isConfirm) {
+      		if (isConfirm) {
+      			swal("Deleted!", "Your imaginary file has been deleted.", "success");
+      		} else {
+      			swal("Cancelled", "Your imaginary file is safe :)", "error");
+      		}
+      	});
+      });
+    </script>

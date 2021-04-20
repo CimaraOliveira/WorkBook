@@ -83,7 +83,7 @@
 
                                                     <div class="col">
                                                         <a class="btn btn-primary block"
-                                                           href="{% url 'enviarMensagem' ListPerfil.id %}">Mensagem</a>
+                                                           href="{% url 'listarMensagem' ListPerfil.id %}">Mensagem</a>
                                                          {% if request.user.username %}
                                                         <a class="btn btn-primary block"
                                                            href="{% url 'avaliacao:avaliacao' ListPerfil.id %}">Avaliar</a>

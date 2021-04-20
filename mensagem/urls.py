@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
 
    path('enviarMensagem/<id>', views.enviarMensagem, name='enviarMensagem'),
-   path('responderMensagem/<int:remetente>', views.responderMensagem, name='responderMensagem'),
-   path('listarMensagem/', views.listarMensagem, name='listarMensagem'),
+   path('responderMensagem/<int:idRemetente>/<int:idDestinatario>', views.responderMensagem, name='responderMensagem'),
+   path('detalheMensagem/<int:idRemetente>/<int:idDestinatario>', views.detalheMensagem, name='detalheMensagem'),
+   path('listarMensagem/<int:idDestinatario>', views.listarMensagem, name='listarMensagem'),
 ]

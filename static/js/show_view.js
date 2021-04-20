@@ -41,4 +41,3 @@ function gotoBottom(){
    var element = document.getElementById("sobre");
    element.scrollTop = element.scrollHeight - element.clientHeight;
 }
-
