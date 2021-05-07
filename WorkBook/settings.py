@@ -28,7 +28,7 @@ SECRET_KEY = '^j#ivatxs-jy$2ilenruzir#4wvzans%v2jt4pz(ln9+ru$3(7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ ]
+ALLOWED_HOSTS = ['https://workbook-project.herokuapp.com/']
 #ALLOWED_HOSTS = ['https://worbook.herokuapp.com/']
 #AUTH_USER_MODEL = 'auth.models.User'
 # Application definition
