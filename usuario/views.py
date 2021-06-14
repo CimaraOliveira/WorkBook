@@ -44,6 +44,16 @@ def PerfilProf(request,id):
     return render(request, 'PerfilProfissional.html')
 
 
+def perfildoProfissional(request,id):
+    try:
+        user = Usuario.objects.get(id=id)
+        if user.perfil:
+            return render(request, 'perfildoProfissional.html', {'ListPerfil': user})
+    except Exception as error:
+        print(error)
+    return render(request, 'perfildoProfissional.html')
+
+
 def home(request):
     return render(request, 'home.html')
 
@@ -156,7 +166,7 @@ def perfil(request):
         )"""
 
         new_user.save()
-        return redirect('usuario:submit_login')
+        return redirect('usuario:home')
     print('error')
     return __get__register(request, user, {'error': 'Usuário já Registrado. Tente outro e-mail!'})
 
