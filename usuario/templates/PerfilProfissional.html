@@ -1,7 +1,7 @@
 {% load static %}
 
 <head>
-    <meta name="description"
+     <meta name="description"
           content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
     <!-- Twitter meta-->
     <meta property="twitter:card" content="summary_large_image">
@@ -21,11 +21,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
-
-
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css"
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<header class="app-header__logo"><a class="app-header">&nbsp;&nbsp;&nbsp;&nbsp;WorkBook</a>
+<header class="app-header"><a class="app-header__logo" href="{% url 'usuario:index' %}"><img style=" filter: invert(100%)" height="50"
+                                                                    src="{% static 'images/estacao-de-servico.svg' %}">WorkBook</a>
 
+    <ul class="app-nav">
+        <li class="dropdown"><a class="app-nav__item" href="#sobre" data-toggle="dropdown"><i
+                class="fa fa-info-circle"></i>&nbsp;SOBRE</a>
+        </li>
+        <li class="dropdown"><a class="app-nav__item" href="{% url 'usuario:perfil' %}" data-toggle="dropdown"><i
+                class="fa fa-pencil-square-o"></i>&nbsp;CADASTRE-SE</a>
+        </li>
+        <li class="dropdown"><a class="app-nav__item" href="{% url 'usuario:submit_login' %}" data-toggle="dropdown"><i
+                class="fa fa-sign-in"></i>&nbsp;ENTRAR</a>
+        </li>
+
+
+    </ul>
 </header>
 
 {% block content %}
@@ -42,18 +57,25 @@
                     <div class="col-xl-12 col-md-12">
                         <div class="card user-card-full">
                             <div class="row m-l-0 m-r-0">
+
+
                                 <div class="col-sm-4 bg-c-lite-green user-profile">
                                     <div class="card-block text-center text-white">
-                                        <div class="m-b-25"><img src="https://img.icons8.com/bubbles/100/000000/user.png"
-                                                                 class="img-radius" alt="User-Profile-Image"></div>
-                                        <h6 class="f-w-600">{{ ListPerfil.nome }}</h6>
+                                        <div class="m-b-25">
+                                            {% if ListPerfil.perfil.slogan  %}
+                                            <img class="card-img-top" src="{{ListPerfil.perfil.slogan.url}}"
+                                                                 >
+                                            {% endif %}
+                                        </div>
+                                        <h6 class="f-w-600">{{ ListPerfil.first_name }}</h6>
                                         <p>{{ ListPerfil.perfil.first_name }}</p> <i
                                             class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                                     </div>
                                 </div>
+
                                 <div class="col-sm-8">
                                     <div class="card-block">
-                                        <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Informações do Profissional</h6>
+                                        <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Informações Profissionais</h6>
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <p class="m-b-10 f-w-600">Nome</p>
