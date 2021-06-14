@@ -48,31 +48,6 @@ def home(request):
     return render(request, 'home.html')
 
 
-# buscando profissões pelo nome na tela home
-'''def home_perfil(request):
-    List = None
-
-    nome = request.GET.get('profissao')
-    if nome:
-        List = Usuario.objects.filter(perfil__nome__contains=nome)
-
-    return render(request, 'home.html', {'List': List})
-
-#Buscando na tela index por serviço e cidade
-def index_perfil(request):
-    List = None
-
-    nome = request.GET.get('profissao')
-    cidade = request.GET.get('destino')
-
-    if nome and cidade:
-        List = Usuario.objects.filter((Q(cidade__contains=cidade))
-                                      & (Q(perfil__nome__contains=nome))
-                                      & (Q(perfil__isnull=False))
-                                      )
-
-    return render(request, 'index.html', {'List': List})'''
-
 def is_user_logado(request):
     if request.user.username:
         return True
@@ -102,7 +77,7 @@ def index_perfil(request):
 def logout_user(request):
     request.session.flush()
     logout(request)
-    return redirect('usuario:submit_login')
+    return redirect('usuario:index')
 
 
 def submit_login(request):
@@ -172,13 +147,13 @@ def perfil(request):
         new_user = Usuario.objects.create_superuser(username=username,first_name=first_name,
                                                     email=email, password=senha, cidade=cidade, telefone=telefone,
                                                     perfil=perfil)
-        send_mail(
+        """send_mail(
             'Sua Conta foi Criada!',
             '%s, Cadastro Realizado com Sucesso!' % username,
             'sistema.workbook.21@gmail.com',
             [email],
             fail_silently=False,
-        )
+        )"""
 
         new_user.save()
         return redirect('usuario:submit_login')
